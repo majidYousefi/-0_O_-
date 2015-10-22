@@ -1,5 +1,5 @@
 <?php
-
+require_once 'router/identification_router.php';
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,7 +10,3 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
