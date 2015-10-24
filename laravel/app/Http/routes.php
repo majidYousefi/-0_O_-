@@ -1,5 +1,5 @@
 <?php
-require_once 'router/admin_routers.php';
+require_once 'router/admin_routes.php';
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,3 +10,6 @@ require_once 'router/admin_routers.php';
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', function () {
+    return view('welcome');
+});

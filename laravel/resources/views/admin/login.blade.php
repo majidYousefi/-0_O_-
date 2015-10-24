@@ -18,7 +18,7 @@ and open the template in the editor.
         <?php
   //  echo  Form::open(['action'=>'userController@identify']);
         ?>
-        <form method="post" action="identify" >
+        <form method="post" action="userLogin" >
         <table>
             <tr>
                 <td>

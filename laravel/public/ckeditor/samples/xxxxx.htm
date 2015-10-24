@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+-->
+<html>
+<head>
+<style type="text/css">
+body
+{
+background-color:rgba(188,217,252,0.5);
+}
+textarea
+{
+margin-left:45px;
+font-family:monospace;
+
+}
+input[type="submit"]
+{
+margin-left:550px;
+width:85px;
+font-family:monospace;
+font-size:20px;
+}
+input[name="title"]
+{
+font-size:16px;
+}
+
+table
+{
+
+margin-left:100px;
+}
+
+</style>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="../ckeditor.js"></script>
+	<link rel="stylesheet" href="sample.css">
+<script language="javascript">
+function a()
+{
+	
+	var setlist=document.getElementById('setlist');
+	if( setlist.length<=1)
+	{
+	<?php 
+$server=mysql_connect("localhost","majid","");
+mysql_select_db("test",$server);
+$s=mysql_query("select count('id') from `set`",$server);
+$i=mysql_result($s,0,0);
+ echo (" var x=$i;");  ?>
+
+var d=new Array();
+var id=new Array();
+<?php 
+$name=mysql_query("select * from `set`",$server);
+for($v=0;$v<$i;$v++)
+{
+$n[$v]=mysql_result($name,$v,1);
+$di[$v]=mysql_result($name,$v,0);
+echo(" d[$v]='$n[$v]';
+id[$v]='$di[$v]';
+");	
+}
+?>
+for(var i=0;i<x;i++)
+{
+	
+	var op=document.createElement("option");
+op.appendChild(document.createTextNode(d[i]) );
+	op.setAttribute("value",id[i]);
+	setlist.appendChild(op);
+	var si =document.getElementById('setid');
+	
+	var chek=1;
+}
+	}
+}
+</script>
+
+</head>
+<body>
+	
+		
+
+		
+	
+	<form action="..\..\database.php" method="post">
+		<p>
+			<textarea class="ckeditor" cols="10" id="editor2" name="body" rows="10">
+				
+			</textarea>
+		
+<input type='hidden' name='chek' value="insertarticle">
+	
+	
+			<tr><td><input type="submit" value="Save">
+		
+	</form>
+</p>
+
+	<div id="footer">
+		<hr>
+		
+		
+	
+</body>
+
+<style type='text/css'>
+.ckeditor
+{
+color:red;
+}
+
+</style>
+</html>
