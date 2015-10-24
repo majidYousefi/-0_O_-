@@ -1,5 +1,5 @@
 <?php
-require_once 'router/identification_router.php';
+require_once 'router/admin_routers.php';
 /*
 |--------------------------------------------------------------------------
 | Application Routes

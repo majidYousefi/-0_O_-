@@ -10,3 +10,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::get('sys_admin', function () {
+    return view('login');
+});
