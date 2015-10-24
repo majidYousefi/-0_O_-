@@ -56,7 +56,7 @@ and open the template in the editor.
            @yield('table')
            <tr>
                <td width="200">
-               <a href="{{ URL::to('exit') }}">Logout</a>
+               <a href="{{ URL::to('userLogout') }}">Logout</a>
                </td>
                <td >Profile</td>
            </tr>

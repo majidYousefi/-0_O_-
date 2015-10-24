@@ -40,7 +40,7 @@ and open the template in the editor.
         </form>
  </center>
     <?PHP
-        echo '<hr>'.Session::get('er');
+       // echo '<hr> user: '.Session::get('user');
     
     ?>
     </body>

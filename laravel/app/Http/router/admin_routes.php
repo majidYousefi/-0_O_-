@@ -10,12 +10,16 @@ Route::get('sys_admin', function () {
     return view('admin.login');
 });
 
-Route::post('userLogin', "admin\loginController@identify");
 
 
 
+ Route::post('userLogin', "Admin\signController@login");
 Route::group(['middleware' => 'auth', 'namespace' => 'Admin'], function () {
     // Controllers Within The "App\Http\Controllers\Admin" Namespace
     Route::get("panel", "userController@index");
+    
+   
+    Route::get("userLogout", "signController@logout");
+
 });
 
