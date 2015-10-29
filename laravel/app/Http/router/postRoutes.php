@@ -4,6 +4,6 @@
 //
 //************Group Without Auth MiddleWare
 Route::group(['middleware' => 'auth', 'namespace' => 'c_post'], function () {
-   Route::get("postAdd", "postController@add_post");
+   Route::get("postAdd", "postController@index");
 });
 

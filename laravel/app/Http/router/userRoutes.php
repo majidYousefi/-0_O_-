@@ -14,5 +14,5 @@ Route::group(['middleware' => 'auth', 'namespace' => 'c_user'], function () {
 });
 
 Route::get('sys_admin', function () {
-    return view('v_user.login');
+    return view('v_users.login');
 });

@@ -7,11 +7,16 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-class postController extends Controller
-{
-    public function add_post()
-    {
-        echo '<pre>'; print_r(Auth::user());
+use  App\library\editor;
+class postController extends Controller {
+
+
+
+    public function index() {
+
+        return view("v_posts.editor", ["data" => editor::get("", "400", 'en')]);
     }
-   
+
+    
+
 }
