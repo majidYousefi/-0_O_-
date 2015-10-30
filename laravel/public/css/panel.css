@@ -1,0 +1,32 @@
+body
+{
+    direction: rtl;
+    background-color: rgb(91, 94, 99);
+    font-size: 15px !important;
+}
+.rightPanel
+{
+    float: right;
+    width: 14%;
+    height: 100%;
+    background-color: #FFFFFF;
+
+}
+.navbar{
+    border-radius: 0px;
+    margin: 0;
+}
+#mainPanel
+{
+
+    min-height: 900px;
+    background-image: linear-gradient(rgba(38,119,159,.02),rgba(29,86,115,.02));
+    width: 86%;
+    height: 100%;
+    padding-right: 20px;
+    line-height: 18px;
+    display: block;
+    background-color:rgb(142, 142, 142);
+    float: left;
+    padding-top: 5px;
+}

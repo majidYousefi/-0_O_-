@@ -1,0 +1,298 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 6, 2015, 3:12:21 PM
+    Author     : HP TMP253
+*/
+        body,html{height:100%;
+                      background-repaet:repaet;
+                      -webkit-background-size:cover;
+                      -moz-background-size:cover;
+                      -o-background-size:cover;
+                      background-size:cover;
+                      font-family:BYekan,roya,'B Koodak';
+                      direction:ltr;
+                      position:relative;
+                      overflow-x:hidden;
+
+            }
+
+
+
+
+            .container
+            {
+                width:100%;
+                margin:0;
+                background:none;
+            }
+
+
+
+
+
+
+
+            .glyphicon
+            {
+                float:right;
+                left:45px;
+            }
+            li
+            {
+                padding:0;
+                text-align: right;
+            }
+            .effect-moveleft .outer-nav a{
+                color:white;
+                font-weight: bold;
+            }
+            .nav>li>a:focus, .nav>li>a:hover {
+                color:white !important;
+                background-color: #C2174B;
+            }
+            .menuButtonBox
+            {
+                width:200px;
+                position:fixed;
+                height:50px;
+                background-color:rgb(237, 129, 81);
+                opacity:0.9;
+                z-index:22;
+            }
+            .menuButtonBox:hover
+            {
+                cursor:pointer;
+                opacity:1;
+            }
+            .banner{
+                max-height:400px;
+                min-height:200px;
+                z-index:-1;
+                //position:fixed;
+
+            }
+            .bannerDiv
+            {
+                display:box;
+                width:100%;
+                height:100%;
+                //border:1px solid red;
+            }
+
+            .effect-moveleft {
+                background: none;
+            }
+
+            td , th
+            {
+                padding:0;
+                padding-bottom: 4px;
+                vertical-align: top;
+              text-align: -webkit-center;
+            }
+       
+
+            .mainTable
+            {
+                background-color: white;
+                margin-top: 70px;
+                width: 80%;
+                min-width: 900px;
+                
+            }
+         
+
+
+            button, input, select, textarea
+            {
+                border: 0;
+                //  background-color: black;
+                color: white;
+                height: 30px;
+                border-radius: 3px;
+                color:black;
+            }
+
+
+            .slider
+            {
+                width:100%;
+                direction:ltr;
+                position:relative;
+                height:300px;
+                //  min-height:800px;
+                float:none;
+
+            }
+
+            .slider img
+            {
+                max-height:400px;
+                min-height:400px;
+
+                height:100%;
+            }
+            .slideText
+            {
+                background-color:black;
+                margin-left:none;
+            }
+
+            .middleBox
+            {
+                min-width:200px;
+                min-height:100px;
+                width:100%;
+                background-color:red;
+                float:right;
+                //   margin-right:25px;
+            }
+            .videoElement img
+            {
+                max-height:200px;
+            }
+
+
+
+
+            .wrap {width:200px; margin:auto;  z-index:1;}
+
+            .msg {
+                color: whitesmoke;
+                text-align:center;
+                //font-family: 'Bree Serif', Courier, monospaced;
+                font-size:42px;
+                width:400px;
+                position:absolute;
+                margin:55px 0 0 2px;
+                pointer-events: none; 
+            }
+
+            .sticker {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                background: url(../../../galleries/icons/play.png) center no-repeat;
+                background-size: 100px 100px;
+                animation: spin 10s linear infinite;
+                // animation-play-state: paused;
+            }
+
+            .sticker:hover {
+                /* Toggle our animation play state to running when we are hovering over our sticker */
+                animation-play-state: running;
+            }
+
+
+            @keyframes spin {
+                100% {transform: rotate(1turn); }
+            }
+
+            .videoElement:hover{
+                opacity:0.5;
+              //  background-color:black;
+
+            }
+
+            .play
+            {
+                top:200px;   
+            }
+         
+
+
+
+
+
+                         .boxHeader
+                                    {
+                                   width: 100%;
+   background: linear-gradient(180deg, rgb(255,255,255), rgb(245,245,245),rgb(235,235,235));
+  display: block;  
+  margin-bottom: 15px;
+   //  border-radius: 1px 55px 1px 55px;
+                                    }
+
+                                    .boxInner
+                                    {
+                                    //    background-color: yellow;
+                                        width: 90%;
+                                        height: 90%;
+                                        min-height: 70px;
+                                        margin: 5px;  
+                                    }
+     .box
+            {
+                min-width: 200px;
+                min-height: 100px;
+                width: 200px;
+               
+                margin: 5px;
+                background-color: rgb(64, 69, 74);
+            }
+            .productTable img
+            {
+                max-width:90%;
+                width:80%;
+                max-height:500px;
+                min-height:500px;
+                border-radius: 1px 55px 1px 55px;
+            }
+
+
+
+      .productSet
+                                    {
+                                        float:right;
+                                        width:180px;
+                                        height:180px;
+                                              margin-top: 10px;
+                                     margin-bottom: 15px; 
+                                     margin-right: 20px;
+                                    }
+                              
+                                    .horizontalbox
+                                    {
+                                        background: linear-gradient(45deg,rgb(255,252,249),rgb(250,248,244),rgb(245,244,240),rgb(250,248,244));
+                                          height: 100%;
+  width: 100%;
+  display: inline-block;
+                                    }
+                                             .horizontalbox img
+                                    {
+                           border-radius:5px;
+                                    }
+                                    
+                                          .productSet img
+                                    {
+                                       width:180px;
+                                        height:180px  ;
+                                          transition: 1s ;
+                                          -webkit-transition: 1s ;
+                                          -moz-transition: 1s ;
+                                    }
+                                    
+                                    .productSet img:hover{
+                                          transform: scale(1.1);
+                                        -moz-transform: scale(1.1);
+                                        -webkit-transform: scale(1.1);
+                                      
+                                        transition: 1s ;
+                                           -webkit-transition: 1s ;
+                                          -moz-transition: 1s ;
+                                    }
+                            .productHeader
+                            {
+                                display: block;  
+                                margin-bottom: 15px;
+                                border-radius: 1px 55px 1px 55px;
+                                font-size: 22px;
+                                color: white;
+                                background: rgb(64, 69, 74);
+                                font-style: oblique;
+                                font-family: serif;
+                            }
