@@ -13,23 +13,19 @@ use Input;
 
 class postController extends Controller {
 
-    public function index($lang='') {
+    public function newPost($lang = '') {
 
-        return view("v_posts.editor", ["data" => element::editor("", "400", $lang)]);
+        return view("v_posts.NewPost", ["editor" => element::editor('newPost','', '320', $lang)]);
     }
 
     public function addNewPost() {
-
         $title = Input::get("title");
-        $body = "body";
-
+        $body = Input::get("body");
         $importer_id = Auth::user()['attributes']['id'];
-        echo 'xxx';
         $v = new Post();
         $v->title = $title;
         $v->body = $body;
         $v->importer_id = $importer_id;
-        // $v->access_directory = $filename;
         $v->save();
     }
 

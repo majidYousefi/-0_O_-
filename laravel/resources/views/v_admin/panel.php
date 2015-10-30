@@ -10,51 +10,12 @@
         <link rel="stylesheet" href="bootstrap-3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/panel.css">
         <script src="menus/dropDown/script.js"></script>
-
         <script src="bootstrap-3.3.5/js/bootstrap.min.js"></script>
+        <script src="js/functions.js"></script>
         <script>
-            function fill(func, extra_date)
+            function csrf()
             {
-
-                $("#mainPanel").html('');
-                $(document).ready(function (e) {
-                    $.ajax({
-                        url: func + "/" + extra_date,
-                        beforeSend: function () {
-                            //   ajaxtStart();
-                        },
-                        success: function (data) {
-                            //    alert(data);
-                            $("#mainPanel").html(data);
-                            window.scrollBy(0, -1000);
-                            //ajaxComplete();
-                        }
-                    });
-                });
-            }
-            function sendFormAjax(func, ajForm)
-            {
-                var _token = "<?php echo csrf_token(); ?>";
-                var data = {};
-                data['_token'] = _token;
-                $("#" + ajForm + " input").each(function () {
-                    if (this.name!='')
-                        data[this.name] = this.value;
-
-                });
-
-                $(document).ready(function (e) {
-                    $.ajax({
-                        url: func,
-                        type: "post",
-                        data,
-                                success: function (data) {
-                                    alert(data);
-                                }
-                    });
-                    alert("zzz");
-                });
-
+                return "<?php echo csrf_token(); ?>";
             }
         </script>
     </head>
@@ -98,7 +59,7 @@
                 <ul>
                     <li class=' has-sub'><a href='#' >کالا</a>
                         <ul>
-                            <li ><a href='#' onclick="fill(this.id, 'fa')" id="newPost">Product 1</a>     </li>
+                            <li ><a href='#' onclick="fill(this.id, '')" id="newPost">Product 1</a>     </li>
                             <li ><a href='#'>Product 2</a>         </li>
                         </ul>
                     </li>

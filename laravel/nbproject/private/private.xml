@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/projects/laravel/resources/views/v_posts/editor.php</file>
-            <file>file:/C:/wamp/www/projects/laravel/app/Http/Controllers/c_user/userController.php</file>
-            <file>file:/C:/wamp/www/projects/laravel/app/Http/Controllers/c_post/postController.php</file>
-            <file>file:/C:/wamp/www/projects/laravel/app/Http/router/userRoutes.php</file>
-            <file>file:/C:/wamp/www/projects/laravel/app/library/editor.php</file>
+            <file>file:/C:/wamp/www/projects/laravel/resources/views/v_admin/panel.php</file>
+            <file>file:/C:/wamp/www/projects/laravel/app/Http/Controllers/c_admin/postController.php</file>
         </group>
     </open-files>
 </project-private>
