@@ -1,21 +1,30 @@
-var lastFunc = '';
-var lastExtraData = '';
-function fill(func, extra_data)
+var funcParams = '';
+
+$(document).ready(function () {
+    $(".fill").click(function () {
+        fill(this.name);
+    });
+});
+
+
+function fill(funcParams)
 {
-    var zurl = func + ((extra_data != '') ? "/" + extra_data : '');
     $("#mainPanel").html('');
+    var data = funcParams.split("^");
+    var zurl = data[0];
+    for (var i = 1; i < data.length; i++)
+        zurl += ((data[i] != '') ? "/" + data[i] : '');
+
     $(document).ready(function (e) {
         $.ajax({
             url: zurl,
-            beforeSend: function () {
-                //   ajaxtStart();
+            error: function (data) {
+                location.reload();
             },
             success: function (data) {
-                window.lastFunc = func;
-                window.lastExtraData = extra_data;
+                window.funcParams = funcParams;
                 $("#mainPanel").html(data);
                 window.scrollBy(0, -1000);
-                //ajaxComplete();
             }
         });
     });
@@ -31,16 +40,26 @@ function sendFormAjax(func, ajForm)
         var body = $(".cke_wysiwyg_frame").contents().find(".cke_editable").html();
         if (body)
             data['body'] = body;
-
         $.ajax({
             url: func,
             type: "post",
-            data,
-                    success: function (data) {
-                        fill(window.lastFunc, window.lastExtraData);
-                    }
+            data: data,
+            success: function (data) {
+                if(!data)
+                   fill(window.funcParams);
+               else
+                   alert(data);
+            }
         });
     });
 
 }
+
+$(document).ajaxStart(function () {
+    $("#ajaxLoader").css("visibility", "visible");
+});
+$(document).ajaxStop(function () {
+    $("#ajaxLoader").css("visibility", "hidden");
+});
+
            

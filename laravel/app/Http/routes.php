@@ -1,6 +1,7 @@
 <?php
 require_once 'router/userRoutes.php';
 require_once 'router/postRoutes.php';
+require_once 'router/adminRoutes.php';
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,3 +15,4 @@ require_once 'router/postRoutes.php';
 Route::get('/', function () {
     return view('welcome');
 });
+     

@@ -12,6 +12,7 @@
         <script src="menus/dropDown/script.js"></script>
         <script src="bootstrap-3.3.5/js/bootstrap.min.js"></script>
         <script src="js/functions.js"></script>
+        <link rel="stylesheet" href="css/ajaxLoader.css" type="text/css">
         <script>
             function csrf()
             {
@@ -20,68 +21,74 @@
         </script>
     </head>
     <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="#">WebSiteName</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Page 1-1</a></li>
-                                <li><a href="#">Page 1-2</a></li>
-                                <li><a href="#">Page 1-3</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> پروفایل من</a></li>
-                        <li><a href="userLogout"><span class="glyphicon glyphicon-log-in"></span> خروج</a></li>
-                    </ul>
-                </div>
+    <center>
+        <div class="spinner-loader"  id="ajaxLoader">
+            Loading…
+        </div>
+    </center>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#">WebSiteName</a>
             </div>
-        </nav>
-
-
-        <div class="rightPanel">
-            <div id='cssmenu' style="float: right;
-                 width: 100%;">
-                <ul>
-                    <li class=' has-sub'><a href='#' >کالا</a>
-                        <ul>
-                            <li ><a href='#' onclick="fill(this.id, '')" id="newPost">Product 1</a>     </li>
-                            <li ><a href='#'>Product 2</a>         </li>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Page 1-1</a></li>
+                            <li><a href="#">Page 1-2</a></li>
+                            <li><a href="#">Page 1-3</a></li>
                         </ul>
                     </li>
-
-                    <li class=' has-sub'><a href='#'>Products</a>
-                        <ul>
-                            <li ><a href='#'>Product 1</a>     </li>
-                            <li ><a href='#'>Product 2</a>         </li>
-                        </ul>
-                    </li>
-                    <li><a href='#'>About</a></li>
-                    <li><a href='#'>Contact</a></li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> پروفایل من</a></li>
+                    <li><a href="userLogout"><span class="glyphicon glyphicon-log-in"></span> خروج</a></li>
                 </ul>
             </div>
         </div>
+    </nav>
 
-        <!--********* MAIN DIV ********** -->
-        <div id="mainPanel">
+
+    <div class="rightPanel">
+        <div id='cssmenu' style="float: right;
+             width: 100%;">
+            <ul>
+                <li class=' has-sub'><a href='#' >کالا</a>
+                    <ul>
+                        <li ><a href='#' class="fill"  name="newPost^fa" >Product 1</a>     </li>
+                        <li ><a href='#' >Product 2</a>         </li>
+                    </ul>
+                </li>
+
+                <li class=' has-sub'><a href='#'>سرویس</a>
+                    <ul>
+                        <li ><a href='#'>گروه کاربری</a>     </li>
+                        <li ><a href='#' class="fill" name="getView^v_users.NewUser">کاربر</a>         </li>
+                        <li ><a href='#'>سرویس</a>         </li>
+                    </ul>
+                </li>
+                <li><a href='#'>About</a></li>
+                <li><a href='#'>Contact</a></li>
+            </ul>
         </div>
+    </div>
+
+    <!--********* MAIN DIV ********** -->
+    <div id="mainPanel">
+    </div>
 
 
-    </body>
+</body>
 
 
 

@@ -11,6 +11,8 @@ Route::group(['namespace' => 'c_admin'], function () {
 Route::group(['middleware' => 'auth', 'namespace' => 'c_admin'], function () {
     Route::get("panel", "userController@index");
     Route::get("userLogout", "signController@logout");
+     Route::post("addNewUser", "userController@addNewUser");
+
 });
 
 Route::get('sys_admin', function () {
