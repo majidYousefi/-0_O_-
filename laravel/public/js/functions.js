@@ -45,14 +45,54 @@ function sendFormAjax(func, ajForm)
             type: "post",
             data: data,
             success: function (data) {
-                if(!data)
-                   fill(window.funcParams);
-               else
-                   alert(data);
+                if (!data)
+                    fill(window.funcParams);
+                else
+                {
+                    showMsg(data);
+                }
             }
         });
     });
 
+}
+
+function showMsg(data)
+{
+    data = $.parseJSON(data);
+    var MessageType = '';
+    switch (data['kind'])
+    {
+        case 'i':
+            MessageType = BootstrapDialog.TYPE_INFO;
+            break;
+        case 'p':
+            MessageType = BootstrapDialog.TYPE_PRIMARY;
+            break;
+        case 's':
+            MessageType = BootstrapDialog.TYPE_SUCCESS;
+            break;
+        case 'w':
+            MessageType = BootstrapDialog.TYPE_WARNING;
+            break;
+        case 'd':
+            MessageType = BootstrapDialog.TYPE_DANGER;
+            break;
+        default:
+            MessageType = BootstrapDialog.TYPE_DEFAULT
+            break;
+    }
+    BootstrapDialog.show({
+        type: MessageType,
+        title: 'خطا  !!!!',
+        message: data['msg'],
+        buttons: [{
+                label: 'بستن',
+                action: function (dialogRef) {
+                    dialogRef.close();
+                }
+            }]
+    });
 }
 
 $(document).ajaxStart(function () {

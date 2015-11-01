@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="css/panel.css">
         <script src="menus/dropDown/script.js"></script>
         <script src="bootstrap-3.3.5/js/bootstrap.min.js"></script>
+        <link href="bootstrap-3.3.5/css/BootstrapDialog.min.css" rel="stylesheet" type="text/css" />
+        <script src="bootstrap-3.3.5/js/BootstrapDialog.min.js"></script>
         <script src="js/functions.js"></script>
         <link rel="stylesheet" href="css/ajaxLoader.css" type="text/css">
         <script>
@@ -19,6 +21,7 @@
                 return "<?php echo csrf_token(); ?>";
             }
         </script>
+        
     </head>
     <body>
     <center>
@@ -38,7 +41,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="#">خانه</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -86,7 +89,6 @@
     <!--********* MAIN DIV ********** -->
     <div id="mainPanel">
     </div>
-
 
 </body>
 

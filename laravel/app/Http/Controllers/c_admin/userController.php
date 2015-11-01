@@ -23,7 +23,7 @@ class userController extends Controller {
             $user->save();
         }
         else
-            return "تکرار پسسورد اشتباست";
+            return  json_encode(["kind"=>"d","msg"=>"تکرار رمز عبور اشتباه وارد شده است."]);
     }
 
 }

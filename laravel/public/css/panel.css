@@ -1,5 +1,22 @@
+@font-face {
+    font-family: 'B Koodak';
+    src: url("../fonts/BKoodkBd.ttf");
+}
+@font-face {
+    font-family: 'roya';
+    src: url("../fonts/roya.ttf");
+}    
+
+@font-face
+{
+    font-family: 'BYekan';
+    src: url("../fonts/BYekan.ttf");
+}
+
+
 body
 {
+     font-family:'roya','B Koodak','BYekan' !important;  
     direction: rtl;
     background-color: rgb(91, 94, 99);
     font-size: 15px !important;
