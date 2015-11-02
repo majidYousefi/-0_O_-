@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Input;
 use Hash;
 use App\User;
+use App\library\dialog;
 
 class userController extends Controller {
 
@@ -16,14 +17,16 @@ class userController extends Controller {
     }
 
     public function addNewUser() {
-        if (Input::get('password') == Input::get('re_password')) {
-            $user = new User();
-            $user->username = Input::get('username');
-            $user->password = Hash::make(Input::get('password'));
-            $user->save();
-        }
-        else
-            return  json_encode(["kind"=>"d","msg"=>"تکرار رمز عبور اشتباه وارد شده است."]);
+        if (!empty(trim(Input::get('username')))) {
+            if ((Input::get('password') == Input::get('re_password')) && (!empty(trim(Input::get('password'))))) {
+                $user = new User();
+                $user->username = Input::get('username');
+                $user->password = Hash::make(Input::get('password'));
+                $user->save();
+            } else
+                return dialog::message("d", "خطا", "تکرار رمز عبور اشتباه وارد شده است.");
+        } else
+            return dialog::message("w", "هشدار", "نام کاربری نمی تواند خالی باشد.");
     }
 
 }

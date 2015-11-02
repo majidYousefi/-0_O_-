@@ -34,9 +34,15 @@ function sendFormAjax(func, ajForm)
     $(document).ready(function (e) {
         var data = {};
         data['_token'] = csrf();
-        $("#" + ajForm + " [name]").each(function () {
+        var rules=0;
+       $("#" + ajForm + " [name]").each(function () {
+            if(this.required && this.value=='') rules=-1;
             data[this.name] = this.value;
         });
+        if(rules==-1){ 
+              showMsg(JSON.stringify({"kind":"d","title":"هشدار","msg":"فیلد های اجباری را پر کنید"}));
+            return;
+        }
         var body = $(".cke_wysiwyg_frame").contents().find(".cke_editable").html();
         if (body)
             data['body'] = body;
@@ -46,7 +52,9 @@ function sendFormAjax(func, ajForm)
             data: data,
             success: function (data) {
                 if (!data)
+                {
                     fill(window.funcParams);
+                }
                 else
                 {
                     showMsg(data);
@@ -84,7 +92,7 @@ function showMsg(data)
     }
     BootstrapDialog.show({
         type: MessageType,
-        title: 'خطا  !!!!',
+        title: data['title'],
         message: data['msg'],
         buttons: [{
                 label: 'بستن',

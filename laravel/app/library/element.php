@@ -36,5 +36,12 @@ class element {
     public function input($y = '') {
         $this->elements="<input type='text' value=1 name='123' >";
     }
+    
+    
 
 }
+
+
+
+
+
