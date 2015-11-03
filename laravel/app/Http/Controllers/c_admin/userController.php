@@ -23,10 +23,11 @@ class userController extends Controller {
                 $user->username = Input::get('username');
                 $user->password = Hash::make(Input::get('password'));
                 $user->save();
+               
             } else
-                return dialog::message("d", "خطا", "تکرار رمز عبور اشتباه وارد شده است.");
+                return dialog::message("pd", "خطا", "تکرار رمز عبور اشتباه وارد شده است.");
         } else
-            return dialog::message("w", "هشدار", "نام کاربری نمی تواند خالی باشد.");
+            return dialog::message("pd", "هشدار", "نام کاربری نمی تواند خالی باشد.");
     }
 
 }

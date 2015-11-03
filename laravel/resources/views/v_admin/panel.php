@@ -15,11 +15,27 @@
         <script src="bootstrap-3.3.5/js/BootstrapDialog.min.js"></script>
         <script src="js/functions.js"></script>
         <link rel="stylesheet" href="css/ajaxLoader.css" type="text/css">
+        
+        <script src="js/growl/javascripts/jquery.growl.js" type="text/javascript"></script>
+        <link href="js/growl/stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />
         <script>
             function csrf()
             {
                 return "<?php echo csrf_token(); ?>";
             }
+            
+            
+function a()
+{
+	
+		$(document).ready(function() {
+//  $.growl({ title: "Growl", message: "The kitten is awake!" });
+ // $.growl.error({ message: "The kitten is attacking!" });
+ // $.growl.notice({ message: "The kitten is cute!" });
+
+});
+	  
+}
         </script>
         
     </head>
@@ -87,9 +103,8 @@
     </div>
 
     <!--********* MAIN DIV ********** -->
-    <div id="mainPanel">
-    </div>
-
+    <div id="mainPanel">  </div>
+  <div id="growls" class="default"></div>
 </body>
 
 
