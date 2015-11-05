@@ -15,31 +15,21 @@
         <script src="bootstrap-3.3.5/js/BootstrapDialog.min.js"></script>
         <script src="js/functions.js"></script>
         <link rel="stylesheet" href="css/ajaxLoader.css" type="text/css">
-        
-        <script src="js/growl/javascripts/jquery.growl.js" type="text/javascript"></script>
-        <link href="js/growl/stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />
+        <script src="plugins/growl/javascripts/jquery.growl.js" type="text/javascript"></script>
+        <link href="plugins/growl/stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />
+        <script src="plugins/autocomplete/jquery.easy-autocomplete.min.js"></script> 
+        <link rel="plugins/autocomplete/stylesheet" href="easy-autocomplete.min.css"> 
         <script>
             function csrf()
             {
                 return "<?php echo csrf_token(); ?>";
             }
-            
-            
-function a()
-{
-	
-		$(document).ready(function() {
-//  $.growl({ title: "Growl", message: "The kitten is awake!" });
- // $.growl.error({ message: "The kitten is attacking!" });
- // $.growl.notice({ message: "The kitten is cute!" });
 
-});
-	  
-}
         </script>
-        
+
     </head>
     <body>
+        
     <center>
         <div class="spinner-loader"  id="ajaxLoader">
             Loading…
@@ -92,7 +82,7 @@ function a()
                 <li class=' has-sub'><a href='#'>سرویس</a>
                     <ul>
                         <li ><a href='#'>گروه کاربری</a>     </li>
-                        <li ><a href='#' class="fill" name="getView^v_users.NewUser">کاربر</a>         </li>
+                        <li ><a href='#' class="fill" name="newUser^">کاربر</a>         </li>
                         <li ><a href='#'>سرویس</a>         </li>
                     </ul>
                 </li>
@@ -104,7 +94,8 @@ function a()
 
     <!--********* MAIN DIV ********** -->
     <div id="mainPanel">  </div>
-  <div id="growls" class="default"></div>
+    <div id="growls" class="default"></div>
+    
 </body>
 
 

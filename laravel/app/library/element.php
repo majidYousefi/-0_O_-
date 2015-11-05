@@ -2,6 +2,8 @@
 
 namespace App\library;
 
+use DB;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,7 +20,7 @@ class element {
     //put your code here
     public $elements = '';
 
-    public static function editor($router='',$width = '', $height = '', $lang = '') {
+    public static function editor($router = '', $width = '', $height = '', $lang = '') {
         $editor = "<select onchange=fill('{$router}',this.value) class='form-control' style='  width: 100px;'>
                           <option >زبان</option>
                           <option value='fa'>فارسی</option>
@@ -34,14 +36,18 @@ class element {
     }
 
     public function input($y = '') {
-        $this->elements="<input type='text' value=1 name='123' >";
+        $this->elements = "<input type='text' value=1 name='123' >";
     }
-    
-    
+
+    public static function autoComplete($model, $attribute, $name,$required='') {
+        $data = DB::table($model)->lists($attribute);
+        $ac = "<script>
+               var d=['" . implode("','", $data) . "']
+               var options = {data: d,
+	       list: {match: {enabled: true}}     };  ";
+        $ac.='$("#' . $name . '").easyAutocomplete(options);</script>';
+        $ac.="<input class='form-control' id='{$name}' name='{$name}' $required/>";
+        return $ac;
+    }
 
 }
-
-
-
-
-
