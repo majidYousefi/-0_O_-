@@ -8,7 +8,6 @@
         <script src="js/jquery.js" type="text/javascript"></script>
         <link rel="stylesheet" href="menus/dropDown/styles.css">   
         <link rel="stylesheet" href="bootstrap-3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/panel.css">
         <script src="menus/dropDown/script.js"></script>
         <script src="bootstrap-3.3.5/js/bootstrap.min.js"></script>
         <link href="bootstrap-3.3.5/css/BootstrapDialog.min.css" rel="stylesheet" type="text/css" />
@@ -19,6 +18,7 @@
         <link href="plugins/growl/stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />
         <script src="plugins/autocomplete/jquery.easy-autocomplete.min.js"></script> 
         <link rel="plugins/autocomplete/stylesheet" href="easy-autocomplete.min.css"> 
+                <link rel="stylesheet" href="css/panel.css">
         <script>
             function csrf()
             {
@@ -81,7 +81,7 @@
 
                 <li class=' has-sub'><a href='#'>سرویس</a>
                     <ul>
-                        <li ><a href='#'>گروه کاربری</a>     </li>
+                        <li ><a href='#' class="fill" name="getView^v_users.UserLists">گروه کاربری</a>     </li>
                         <li ><a href='#' class="fill" name="newUser^">کاربر</a>         </li>
                         <li ><a href='#'>سرویس</a>         </li>
                     </ul>

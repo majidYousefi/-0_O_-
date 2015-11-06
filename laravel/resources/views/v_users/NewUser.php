@@ -25,8 +25,10 @@
     </table>
 
 
-        <input  class="form-control"  type="file" name="visualMedia"  id="s"  accept="image/*" required> 
-           <input  class="form-control"  type="file" name="vis222"  id="sd" accept="image/*"> 
+        <input  class="form-control"  type="file" name="visuat4lMedia"  id="sfj"  accept="image/*" > 
+        <label for="vaziat" class="required">vaziat</label>
+             <?PHP echo $multiSelect; ?>
     </form>
 
-    <button id="addNewUser" onclick="sendFormAjax(this.id, 'fileinfo')">ارسال</button>
+    <button id="addNewUser" class="btn btn-default" onclick="sendFormAjax(this.id, 'fileinfo')">ارسال</button>
+

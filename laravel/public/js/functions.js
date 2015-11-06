@@ -22,6 +22,9 @@ function fill(funcParams)
             success: function (data) {
                 window.funcParams = funcParams;
                 $("#mainPanel").html(data);
+
+              if($(data).filter('#listx').text())
+                      fillList();
                 window.scrollBy(0, -1000);
             },
             xhr: function () {
@@ -35,31 +38,25 @@ function fill(funcParams)
                 return xhr;
             }
         });
+     
+        
     });
 }
+function fillList()
+{
+    $(document).ready(function () {
+    $("#listx").append("salam");
+    });
+
+}
+
 function sendFormAjax(func, ajForm)
 {
     $(document).ready(function (e) {
-        var data = {};
-        data['_token'] = csrf();
-        var rules = 0;
-        $("#" + ajForm + " [name]").each(function () {
-            if (this.required && $.trim(this.value) == '')
-            {
-                rules = -1;
-                $("[name='" + this.name + "']").css({"border-color": "red"});
-            }
-            else
-                $("[name='" + this.name + "']").css({"border-color": "#ccc"});
-            data[this.name] = this.value;
-        });
-        if (rules == -1) {
-            $.growl.error({message: " فیلد های اجباری را پر کنید !!!"});
+
+        var data = checkFixData(ajForm);
+        if (data == '-1')
             return;
-        }
-        var body = $(".cke_wysiwyg_frame").contents().find(".cke_editable").html();
-        if (body)
-            data['body'] = body;
         $.ajax({
             url: func,
             type: "post",
@@ -67,8 +64,8 @@ function sendFormAjax(func, ajForm)
             success: function (data) {
                 if (!data)
                 {
-                    $.growl.notice({message: "عملیات با موفقیت انجام شد ."});
                     uploadVisual(ajForm);
+                    $.growl.notice({message: "عملیات با موفقیت انجام شد ."});
                     fill(window.funcParams);
                 }
                 else
@@ -80,7 +77,55 @@ function sendFormAjax(func, ajForm)
     });
 
 }
+function  checkFixData(ajForm)
+{
+    var data = {};
+    data['_token'] = csrf();
+    var rules = 0;
+    //*****************FILL DATA IF ELEMENT'S HAVE 'NAME'
+    $("#" + ajForm + " [name]").each(function () {
+        if (this.required && $.trim(this.value) == '')
+        {
+            rules = -1;
+            $("[name='" + this.name + "']").css({"border-color": "red"});
+        }
+        else
+            $("[name='" + this.name + "']").css({"border-color": "#ccc"});
+        if (this.name)
+            data[this.name] = this.value;
+    });
+    //*******************AUTO COMPLETE
+    $(".multiSelect").each(function () {
+        var x = [];
+        $("#" + this.id + " input[type='checkbox']").each(function () {
+            if (this.checked)
+                x.push($(this).val());
+        });
+        if (x.length > 0)
+            data[this.id] = "," + x.join() + ",";
+        if (this.title == 'required' && !data[this.id])
+        {
+            rules = -1;
+            $("#" + this.id).css({"border-color": "red"});
+        }
+        else
+            $("[name='" + this.id + "']").css({"border-color": "#ccc"});
+    });
 
+    //************CHECK IF DONT FILL REQUIRED ELEMENTS
+    if (rules == -1) {
+        $.growl.error({message: " فیلد های اجباری را پر کنید !!!"});
+        return -1;
+    }
+    //*********************IF FORM CONTAIN EDITOR
+    var body = $(".cke_wysiwyg_frame").contents().find(".cke_editable").html();
+    if (body)
+        data['body'] = body;
+    //-------------------------------------------
+
+
+    return data;
+}
 function showMsg(data)
 {
     data = $.parseJSON(data);

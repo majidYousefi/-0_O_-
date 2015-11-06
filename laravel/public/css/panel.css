@@ -89,3 +89,29 @@ body
     transform: scale(1.1);
 
 }
+
+.multiSelect
+{
+	direction:rtl;
+	background-color:silver;
+	width:200px;
+	height:200px;
+	max-width:200px;
+	max-height:200px;
+	border:1px solid #ccc;
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
+
+
+.btn-default {
+  color: #FFF;
+  background-color: #313439;
+  border-color: #ccc;
+  min-width: 150px;
+}
+
+.easy-autocomplete
+{
+    width:100% !important;
+}

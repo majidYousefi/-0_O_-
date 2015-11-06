@@ -15,6 +15,7 @@ use DB;
 class userController extends Controller {
 
     public function index() {
+     //   echo '<pre>';print_r(element::multiSelect("posts", "title", "username", "required"));die;
         return view('v_admin.panel');
     }
 
@@ -34,7 +35,10 @@ class userController extends Controller {
     public function newUser() {
 
 
-        return view("v_users.NewUser", ['autoComplete' => element::autoComplete("posts", "title", "username", "required")]);
+        return view("v_users.NewUser", ['autoComplete' => element::autoComplete("posts", "title", "username", "required"),
+                                        'multiSelect'=>element::multiSelect("posts", "title", "vaziat", "required")
+            
+                                        ]);
     }
 
     public function upload() {

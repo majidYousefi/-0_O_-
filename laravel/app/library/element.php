@@ -39,7 +39,7 @@ class element {
         $this->elements = "<input type='text' value=1 name='123' >";
     }
 
-    public static function autoComplete($model, $attribute, $name,$required='') {
+    public static function autoComplete($model, $attribute, $name, $required = '') {
         $data = DB::table($model)->lists($attribute);
         $ac = "<script>
                var d=['" . implode("','", $data) . "']
@@ -48,6 +48,17 @@ class element {
         $ac.='$("#' . $name . '").easyAutocomplete(options);</script>';
         $ac.="<input class='form-control' id='{$name}' name='{$name}' $required/>";
         return $ac;
+    }
+
+    public static function multiSelect($model, $attribute, $name, $required = '') {
+        $data = DB::table($model)->lists($attribute,'id');
+        $mt = "<div class='multiSelect' id='{$name}'  title='{$required}'>";
+        foreach($data as $key=>$row)
+        {
+            $mt.="<input type='checkbox'  value='{$key}' >".$row."<br>" ;
+       }
+            $mt.="</div>";
+        return $mt;
     }
 
 }
