@@ -22,7 +22,7 @@ class element {
 
     public static function editor($router = '', $width = '', $height = '', $lang = '') {
         $editor = "<select onchange=fill('{$router}',this.value) class='form-control' style='  width: 100px;'>
-                          <option >زبان</option>
+                          <option value='0'>زبان</option>
                           <option value='fa'>فارسی</option>
                           <option value='en'>english</option>
                           </select>";
@@ -50,12 +50,13 @@ class element {
         return $ac;
     }
 
-    public static function multiSelect($model, $attribute, $name, $required = '') {
-        $data = DB::table($model)->lists($attribute,'id');
+    public static function multiSelect($model, $attribute, $name, $required = '',$id='id') {
+    
+        $data = DB::table($model)->select('id','title')->get();
         $mt = "<div class='multiSelect' id='{$name}'  title='{$required}'>";
-        foreach($data as $key=>$row)
+        foreach($data as $row)
         {
-            $mt.="<input type='checkbox'  value='{$key}' >".$row."<br>" ;
+            $mt.="<input type='checkbox'  value='{$row->id}' >".$row->$attribute."<br>" ;
        }
             $mt.="</div>";
         return $mt;

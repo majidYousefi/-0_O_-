@@ -960,7 +960,7 @@ body input.navigation-b ul li a:hover:hover {
 .icon-toggler-collapsed:after {
   background-position: bottom left;
 }
-.modal {
+.modalx {
   padding: 20px;
   border-radius: 3px;
   background-color: white;

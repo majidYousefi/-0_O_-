@@ -24,21 +24,12 @@ Route::group(['middleware' => 'auth', 'namespace' => 'c_admin'], function () {
 //
 //******************GET***********
 Route::group(['middleware' => 'auth', 'namespace' => 'c_admin'], function () {
-    Route::get("panel", "userController@index");
-    Route::get("userLogout", "signController@logout");
+    Route::get("panel",function () {return view('admin.panel');});
     Route::get("newUser", "userController@newUser");
+      Route::get("userList","userController@userList");
   
-});
-
-//******************POST**********
-Route::group(['middleware' => 'auth', 'namespace' => 'c_admin'], function () {
-    Route::post("addNewUser", "userController@addNewUser");
-    Route::post("upload", "userController@upload");
 });
 
 
 
 //******************DEFUALT**************
-Route::get('sys_admin', function () {
-    return view('v_users.login');
-});

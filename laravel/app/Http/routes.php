@@ -1,7 +1,6 @@
 <?php
 require_once 'router/userRoutes.php';
-require_once 'router/postRoutes.php';
-require_once 'router/adminRoutes.php';
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,3 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
      
+Route::group(['middleware' => 'auth'], function () {
+    Route::any("getView/{page}", function ($page) {
+        return view("$page");
+    });
+    
+        Route::post("listData","generalController@getListData");
+     
+    
+       Route::post("services/{servId}/{servActn}","manager@detect");
+       Route::post("upload/{servId}", "generalController@upload");
+    
+});
+
+
+
+
+Route::get('sys_admin', function () {
+    return view('v_users.login');
+});

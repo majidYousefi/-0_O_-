@@ -32,7 +32,7 @@ class EloquentUserProvider implements UserProvider
      */
     public function __construct(HasherContract $hasher, $model)
     {
-        $this->model = $model;
+        $this->model = "\App\Models\User"; //$model
         $this->hasher = $hasher;
     }
 

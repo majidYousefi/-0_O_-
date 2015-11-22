@@ -40,9 +40,9 @@ body
     min-height: 900px;
     // background-image: linear-gradient(rgba(38,119,159,.02),rgba(29,86,115,.02));
     //  background-image: url("../imc/dark-aurora-background.jpg");
-    width: 86%;
+    width: 85%;
     height: 100%;
-    padding-right: 20px;
+    //padding-right: 20px;
     line-height: 18px;
     display: block;
     background-color:white;
@@ -92,26 +92,197 @@ body
 
 .multiSelect
 {
-	direction:rtl;
-	background-color:silver;
-	width:200px;
-	height:200px;
-	max-width:200px;
-	max-height:200px;
-	border:1px solid #ccc;
-	overflow-x:hidden;
-	overflow-y:scroll;
+    direction:rtl;
+    background-color:silver;
+    width:200px;
+    height:200px;
+    max-width:200px;
+    max-height:200px;
+    border:1px solid #ccc;
+    overflow-x:hidden;
+    overflow-y:scroll;
 }
 
 
-.btn-default {
-  color: #FFF;
-  background-color: #313439;
-  border-color: #ccc;
-  min-width: 150px;
+#mainPanel .btn-default {
+    color: #FFF;
+    background-color: #313439;
+    border-color: #ccc;
+    min-width: 150px;
 }
 
 .easy-autocomplete
 {
     width:100% !important;
+}
+
+#listx thead
+{
+    background: rgb(121, 123, 126);
+    color: whitesmoke;
+    text-align: center;
+
+}
+
+#listx thead tr td
+{
+    border : 1px solid white;
+
+}
+#listx tbody tr
+{
+    height: 10px;
+    font-size:15px;
+}
+
+#listx tbody tr td
+{
+    padding: 0px;
+    vertical-align: middle; 
+    border : 1px solid white;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width:100px;
+    //width:150px;
+}
+
+#listx tfoot
+{
+    background-color: rgb(121, 123, 126);
+}
+
+#searchBox
+{
+
+    border-top: 1px solid rgb(221, 221, 221);
+    padding-top: 10px;
+}
+
+#searchBox .form-control,.form-control{
+    margin-bottom: 10px;
+    max-width: 300px;
+}
+#searchBox .btn{
+    margin-top: 15px;
+    width: 200px;
+    background-color: rgb(121, 123, 126);
+}
+#listPage
+{
+    width: 50px;
+}
+
+.glyphicon
+{
+    float: left;
+}
+#addButton{
+    float: right;
+}
+#editButton{
+    float: left;
+}
+#cancelButton{
+    float: left;
+}
+
+.navigation
+{
+    display: flex;
+}
+#listPage
+{
+    float: right;
+    border: 0px;
+    text-align: -webkit-center;
+    /* background-color: rgb(121, 123, 126); */
+    color: rgb(3, 3, 3);
+    /* font-size: 13px; */
+    text-shadow: 0px 0px 1px white;
+    line-height: 15px;
+    margin-top: -5px;
+    text-decoration: underline;
+}
+#resultCount
+{
+
+    padding-left: 10px;
+    margin-left: 10px;
+}
+.navx{
+    float: right;
+}
+
+.glyphicon-remove-circle
+{
+    float: none;
+    clear: both !important;
+}
+.glyphicon-edit
+{
+    margin-right: 10px;
+    float: none;
+    clear: both !important;
+}
+
+.glyphicon-remove-circle:hover , .glyphicon-edit:hover
+{
+    color: rgb(207, 47, 114);
+}
+
+
+.glyphicon:hover
+{
+    cursor: pointer;
+}
+
+.navx
+{
+    width: 40px;
+    height: 25px;
+    background-color:white;;
+    font-size: 17px;
+    text-align: -webkit-center;
+    vertical-align: -webkit-baseline-middle;
+    padding: 4px;
+    color: black;
+    transition: 0.2s ;
+    -webkit-transition: 0.2s ;
+    -moz-transition: 0.2s ;
+}
+
+.navx:hover
+{
+
+    background-color:silver;
+    border:1px solid white;
+    color: black;
+
+}
+
+
+.bootstrap-dialog-footer-buttons button
+{
+    margin-right: 13px;
+    min-width:100px;
+}
+.safhe
+{
+    float: right;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+#cont
+{
+      margin-bottom: 70px;
+}
+
+#addButton,#editButton,#cancelButton{
+    margin-top:20px;
+}
+
+#listx td:first-child
+{
+    width:30px !important;
 }
