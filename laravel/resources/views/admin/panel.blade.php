@@ -93,6 +93,18 @@
                         <li ><a href='#' class="fill"  name="3" >سرویس ها</a>         </li>
                     </ul>
                 </li>
+                
+                    <li class=' has-sub'><a href='#'>tt</a>
+                    <ul>
+                  <?PHP 
+                  foreach($services as $serv)
+                  {
+                      echo "<li><a href='#' class='fill' name=$serv->id>$serv->title</a>     </li>";
+                  }
+                  ?>
+                    </ul>
+                </li>
+                
                 <li><a href='#'>About</a></li>
                 <li><a href='#'>Contact</a></li>
             </ul>
@@ -101,12 +113,12 @@
 
     <!--********* MAIN DIV ********** -->
     <div id="mainPanel">  </div>
+    
     <div id="growls" class="default"></div>
     
     
 
 </body>
-
 
 
 </html>

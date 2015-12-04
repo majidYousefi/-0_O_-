@@ -8,9 +8,7 @@
 <td>
     یوزرنیم
 </td>
-<td>
-    پسوورد
-</td>
+
 <td>
     ایمیل
 </td>
@@ -37,28 +35,20 @@
             <td><?PHP echo $autoComplete; ?></td>
         </tr>
         <tr>
-            <td><label for="password" class="required"> کلمه عبور :</label></td>
-            <td><input type="password"   class="form-control" required></td>
+            <td><label for="password" class=""> کلمه عبور :</label></td>
+            <td><input type="password"   class="form-control" ></td>
         </tr>
         <tr>
-            <td>    <label for="re_password" class="required"> تکرار کلمه عبور:</label></td>
-            <td><input  type="password"  class="form-control" required></td>
+            <td>    <label for="re_password" class=""> تکرار کلمه عبور:</label></td>
+            <td><input  type="password"  class="form-control" ></td>
         </tr>
+                <tr>
+            <td>    <label for="re_password" class="required">گروه کاربری :</label></td>
+            <td><?PHP echo $multiSelect; ?></td>
+        </tr>
+    <input type="file" name='u1'>
 
-        <tr>
-            <td>    <label for="re_password" class="required"> auto</label></td>
-            <td> <?PHP //echo $autoComplete;  ?></td>
-        </tr>
     </tbody>
 </table>
-<select>
-    <option value="0">def</option>
-    <option value="1">xxx</option>
-</select>
-<input  class="form-control"  type="file" name="u1"    accept="image/*" > 
-<input  class="form-control"  type="file" name="u2"    accept="image/*" > 
-<label for="vaziat" class="required">vaziat</label>
-<?PHP //echo $multiSelect; ?>
-<textarea ></textarea>
-<input type="radio">radio
+
 @stop

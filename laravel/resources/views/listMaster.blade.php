@@ -19,8 +19,14 @@
     </center>
     <span class="glyphicon glyphicon-chevron-left navx"></span>
     <span class="glyphicon glyphicon-step-backward navx"></span>
+    <select id="toOffset" onchange="do_actn('l')">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+          </select>
     <br><br>
     @section('search') @show
     <br>
-    <button class="btn btn-success" onclick="fillList()">جستجو<span class="glyphicon glyphicon-search"  ></span></button>
+    <button class="btn btn-success" onclick="do_actn('l')">جستجو<span class="glyphicon glyphicon-search"  ></span></button>
+   <br><br><br><br>   <br><br><br><br>
 </div>

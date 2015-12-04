@@ -6,7 +6,7 @@ $(document).ready(function () {
         do_actn("s", this.name);
     });
 
-
+ $.ajaxSetup({timeout:10000});
 
 
 
@@ -148,18 +148,24 @@ function fill()
             url: zurl,
             data: {"_token": csrf()},
             type: "POST",
+            aysnc: false,
+            statusCode: {
+                401: function () {
+                    location.reload();
+                }
+            },
             error: function (data) {
-                //   location.reload();
+                //  location.reload();
             },
             success: function (data) {
 
                 if ($(data).filter('#listx').text())
-                     $.when(do_actn("l")).then($("#mainPanel").hide().fadeTo(400, 1).html(data));
-                 else
-                     $("#mainPanel").hide().fadeTo(400, 1).html(data);
-                 
-              
-                    
+                    $.when(do_actn("l")).then($("#mainPanel").hide().fadeTo(400, 1).html(data));
+                else
+                    $("#mainPanel").hide().fadeTo(400, 1).html(data);
+
+
+
                 window.scrollBy(0, -1000);
 
                 navigation();
@@ -203,10 +209,12 @@ function navigation()
 }
 function fillList(from)
 {
-
+var to=10;
     $(document).ready(function () {
         if ($("#listPage").val())
-            from = ($("#listPage").val() - 1) * 10;      
+            from = ($("#listPage").val() - 1) * 10;
+        if($("#toOffset").val())
+            to=$("#toOffset").val();
         var sData = {};
         sData['data'] = {};
         sData['op'] = {};
@@ -228,12 +236,13 @@ function fillList(from)
         $.ajax({
             url: zurl,
             type: "POST",
-            data: {"_token": csrf(), "from": from, "data": sdata},
+            aysnc: false,
+            data: {"_token": csrf(), "from": from,"to":to,"data": sdata},
             success: function (data) {
                 $("#listx tbody").html('');
                 data = $.parseJSON(data);
 
-                var pageCount = Math.ceil(data['count'] / 10);
+                var pageCount = Math.ceil(data['count'] / to);
                 if (pageCount == 0)
                     pageCount = 1;
 
@@ -318,6 +327,7 @@ function sendFormAjax(d)
             url: zurl,
             type: "post",
             data: data,
+            aysnc: false,
             success: function (data) {
                 if (!data)
                 {
@@ -336,13 +346,13 @@ function sendFormAjax(d)
 
 }
 
-function editFormData(id,d)
+function editFormData(id, d)
 {
     $(document).ready(function (e) {
         var ajForm = "formx";
         var data = checkFixData(ajForm);
         data['id'] = id;
-         if (d)
+        if (d)
             data['files'] = d;
 
         if (data == '-1')
@@ -352,6 +362,7 @@ function editFormData(id,d)
             url: zurl,
             type: "post",
             data: data,
+            aysnc: false,
             success: function (data) {
                 if (!data)
                 {

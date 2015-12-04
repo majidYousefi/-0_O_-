@@ -1,5 +1,4 @@
 <?php
-require_once 'router/userRoutes.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +32,25 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('sys_admin', function () {
     return view('v_users.login');
+});
+
+
+//************Group Without Auth MiddleWare
+Route::group(['namespace' => 'c_admin'], function () {
+    Route::post('userLogin', "signController@login");
+});
+Route::group(['middleware' => 'auth', 'namespace' => 'c_admin'], function () {
+    Route::get("userLogout", "signController@logout"); 
+});
+
+
+
+
+//----------------------------USER CONTROLLER
+
+//************Group WITH Auth MiddleWare
+//
+//******************GET***********
+Route::group(['middleware' => 'auth', 'namespace' => 'c_admin'], function () {
+    Route::get("panel","signController@getServicesAndShowPanel"); 
 });

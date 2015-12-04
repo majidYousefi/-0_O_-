@@ -13,6 +13,7 @@ use DB;
 use Input;
 use Hash;
 use App\generalModel;
+
 class User extends generalModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract {
 
     use Authenticatable,
@@ -39,59 +40,59 @@ class User extends generalModel implements AuthenticatableContract, Authorizable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-    
+
     public function add() {
-                $this->username = Input::get('f1');
-                $this->password = Hash::make(Input::get('f2'));
-                $this->email = Input::get('f5');
-                $this->remember_token=Input::get('files')['u1'];
-                $this->save();
+        $this->username = Input::get('f1');
+        $this->user_group_id = Input::get('f4');
+        $this->save();
     }
-    
-     public function edit() {
-                $t=$this::find(Input::get('id'));               
-                $t->username = Input::get('f1');
-                $t->password = Hash::make(Input::get('f2'));
-                $t->email = Input::get('f5');
-                $t->save();
+
+    public function edit() {
+        $t = $this::find(Input::get('id'));
+        $t->username = Input::get('f1');
+        $t->user_group_id = Input::get('f4');
+        $t->save();
     }
 
     public function get() {
         return DB::select(DB::raw("SELECT "
                                 . "username as f1,"
                                 . "NULL as f2,"
-                                . "Null as f3,"
-                                . "1 as f4,"
-                                . "NULL as f5,"
-                                . "email as f6,"
-                                . "password as f7,"
-                                . "1 as f8"
+                                . "NULL as f3,"
+                                . "user_group_id as f4 "
                                 . " FROM `$this->table`"
                                 . " WHERE id=" . Input::get('id')));
     }
- 
+
     public function delete() {
         DB::table($this->table)->where('id', '=', Input::get('id'))->delete();
     }
 
-    
-    
-       public function listx() {
-        $attr = ["id as f1", "username as f2", "password as f3", "email as f4"];
+    public function listx() {
         $from = (NULL !== (Input::get('from'))) ? Input::get('from') : 0;
         $to = (NULL !== (Input::get('to'))) ? Input::get('to') : 10;
         $cond = Input::get('data');
         
-        $data = DB::table($this->table)->select($attr)->
-                        where("username", "like", "%" . $cond['s1'] . "%")->
-                        where("id", "like", "%" . $cond['s2'] . "%")->
-                        orderBy('id', 'desc')->
-                        skip($from)->take($to)->get();
-
-        $count = DB::table($this->table)->select($attr)->
-                        where("username", "like", "%" . $cond['s1'] . "%")->
-                        where("id", "like", "%" . $cond['s2'] . "%")->get();
-        $data['count'] = sizeof($count);
+        //****** قسمت هایی که باید تغییر بکند. بالا و پایین همیسشه ثایته
+        $sql = "SELECT
+                id as f1,
+                username as f2,
+                user_group_id as f3
+                FROM `$this->table`
+                WHERE 1 ";
+        if (!empty($cond['s1'])) {
+            $sql.=" AND  id='{$cond['s1']}'";
+        }
+        if (!empty($cond['s2'])) {
+            $sql.=" AND username LIKE '%" . $cond['s2'] . "%'";
+        }
+        //**********
+        
+        $sql.=' ORDER BY id DESC';
+        $result = DB::select(DB::raw($sql));
+        $data = array_slice($result,$from,$to);
+        $data['count'] = sizeof($result);
         return json_encode($data);
     }
+
 }

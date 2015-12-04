@@ -20,10 +20,10 @@ class manager extends Controller {
      */
     public function detect($serv_id, $action) {
         $services = [
-            0 => ['post_controller','Post'],
-            1 => ['user_controller','User'],
-            2 => ['user_group_controller','UserGroup'],
-            3 => ['services_controller','Services']
+            0 => ['post_controller', 'Post'],
+            1 => ['user_controller', 'User'],
+            2 => ['user_group_controller', 'UserGroup'],
+            3 => ['services_controller', 'Services']
         ];
 
         $className = SPACE . $services[$serv_id][0];
@@ -44,7 +44,7 @@ class manager extends Controller {
             case 'l':
                 return $do->listx();
                 break;
-                case 'd':
+            case 'd':
                 return $do->delete();
                 break;
         }

@@ -1,4 +1,9 @@
 @font-face {
+    font-family: 'Nassim';
+    src: url("../fonts/BNazanin.ttf");
+}
+
+@font-face {
     font-family: 'B Koodak';
     src: url("../fonts/BKoodkBd.ttf");
 }
@@ -143,7 +148,7 @@ body
     max-width: 150px;
     text-overflow: ellipsis;
     overflow: hidden;
-    width:100px;
+      min-width: 100px;
     //width:150px;
 }
 
@@ -282,7 +287,10 @@ body
     margin-top:20px;
 }
 
-#listx td:first-child
+#listx td:first-child,#listx td:nth-child(2)
 {
-    width:30px !important;
+    width:50px !important;
+    text-align: center;
+    min-width: 50px;
+    font-weight: bold
 }

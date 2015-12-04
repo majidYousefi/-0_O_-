@@ -17,6 +17,11 @@ class dialog {
 
     //put your code here
     public $elements = '';
+    public static $msg=[
+        0=>"فیلد های اجباری را پر کنید .",
+        1=>"X"
+        
+    ];
 
     public static function message($kind='def',$title='',$msg='')
     {

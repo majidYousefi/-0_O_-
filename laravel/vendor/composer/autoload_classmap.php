@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CreateMxxMahvTable' => $baseDir . '/database/migrations/2015_12_02_212251_create_mxx_mahv_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePostsTable' => $baseDir . '/database/migrations/2015_10_29_110229_create_posts_table.php',
     'CreateServicesTable' => $baseDir . '/database/migrations/2015_11_20_130701_create_services_table.php',
@@ -518,4 +519,5 @@ return array(
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'sample' => $baseDir . '/database/sampleMigrate.php',
 );

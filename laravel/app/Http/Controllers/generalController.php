@@ -16,7 +16,7 @@ class generalController extends Controller {
 
     public $model_obj;
 
-    public function __construct($model_instance) {
+    public function __construct($model_instance='User') {
         $model_instance = Model . $model_instance;
         $this->model_obj = new $model_instance();
     }
@@ -41,8 +41,12 @@ class generalController extends Controller {
     
     
     
-    
-    
+    public function msg($msgId='0',$type='pd',$title='خطا')
+    {
+       return dialog::message($type,$title,dialog::$msg[$msgId]);
+    }
+
+
     public function getListData() {
         $table = Input::get('table');
         $data = '';
@@ -111,7 +115,7 @@ class generalController extends Controller {
                 $temp = $file['tmp_name'];
                 $type = array();
                 $type = explode("/", $ftype);
-                $directory = "galleries/" . $type[0] . "_gallery/" . $serv_id;
+                $directory = "galleries/" . $type[0] . "_gallery/orginal/" . $serv_id;
                 if (!file_exists($directory))
                     mkdir($directory, 0777, true);
 

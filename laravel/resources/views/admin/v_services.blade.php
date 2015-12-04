@@ -21,12 +21,19 @@
 
 @extends('formMaster')
 @section('form')
-<table class="table table-hover table-striped table-condensed" style="width:50%;">
+<table class="table table-hover table-striped table-condensed" style="width:100%;">
     <tbody>
         <tr >
             <td><label  for="username" class="required"> نام سرویس:</label></td>
-
             <td><input type="text"   class="form-control" required></td>
+               <td><label  for="username" class="required"> نام کنترلر:</label></td>
+            <td><input type="text"   class="form-control" required></td>
+        </tr>
+            <tr >
+            <td><label  for="username" class="required"> نام مدل:</label></td>
+            <td><input type="text"   class="form-control" required></td>
+               <td><label  for="username" class="required"> نام مایگرت:</label></td>
+            <td><input type="text"   class="form-control" ></td>
         </tr>
     </tbody>
 </table>

@@ -8,6 +8,7 @@ use Input;
 use Hash;
 use Illuminate\Support\Facades\Auth;
 use App\generalModel;
+
 class Post extends generalModel {
 
     protected $table = 'posts';
@@ -31,34 +32,32 @@ class Post extends generalModel {
 
     public function listx() {
         $cond = Input::get('data');
-                $from = (NULL !== (Input::get('from'))) ? Input::get('from') : 0;
+        $from = (NULL !== (Input::get('from'))) ? Input::get('from') : 0;
         $to = (NULL !== (Input::get('to'))) ? Input::get('to') : 10;
-        $data=DB::select(DB::raw("SELECT "
-                                ." id as f1,"
-                                ." title as f2,"
-                                ." body as f3"
-                                ." FROM `$this->table`"
-                                ." WHERE `title` LIKE '%".$cond['s1']."%'"
-                                ." AND `body` LIKE '%".$cond['s2']."%'"
-                                ." ORDER BY `id` DESC"
-                                ." LIMIT $from,$to "
-                
-                
-                ));
- 
-        foreach($data as &$r)
-            $r->f3=mb_substr(strip_tags($r->f3),0,150, "utf-8");
-        
-              $count=DB::select(DB::raw("SELECT "
-                                ." id "
-                                ." FROM `$this->table`"
-                                ." WHERE `title` LIKE '%".$cond['s1']."%'"
-                                ." AND  `body` LIKE '%".$cond['s2']."%'"                               
-                ));
-        
-        
-  
-$data['count'] = sizeof($count);
+        $data = DB::select(DB::raw("SELECT "
+                                . " id as f1,"
+                                . " title as f2,"
+                                . " body as f3"
+                                . " FROM `$this->table`"
+                                . " WHERE `title` LIKE '%" . $cond['s1'] . "%'"
+                                . " AND `body` LIKE '%" . $cond['s2'] . "%'"
+                                . " ORDER BY `id` DESC"
+                                . " LIMIT $from,$to "
+        ));
+
+        foreach ($data as &$r)
+            $r->f3 = mb_substr(strip_tags($r->f3), 0, 150, "utf-8");
+
+        $count = DB::select(DB::raw("SELECT "
+                                . " id "
+                                . " FROM `$this->table`"
+                                . " WHERE `title` LIKE '%" . $cond['s1'] . "%'"
+                                . " AND  `body` LIKE '%" . $cond['s2'] . "%'"
+        ));
+
+
+
+        $data['count'] = sizeof($count);
         return json_encode($data);
     }
 
@@ -71,5 +70,4 @@ $data['count'] = sizeof($count);
                                 . " WHERE id=" . Input::get('id')));
     }
 
-   
 }

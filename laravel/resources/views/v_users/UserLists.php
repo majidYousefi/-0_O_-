@@ -49,3 +49,15 @@
     
 </div>
    
+
+
+<select>
+    <option value="0">def</option>
+    <option value="1">xxx</option>
+</select>
+<input  class="form-control"  type="file" name="u1"    accept="image/*" > 
+<input  class="form-control"  type="file" name="u2"    accept="image/*" > 
+<label for="vaziat" class="required">vaziat</label>
+<?PHP //echo $multiSelect; ?>
+<textarea ></textarea>
+<input type="radio">radio
