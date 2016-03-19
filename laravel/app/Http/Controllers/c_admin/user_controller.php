@@ -8,50 +8,46 @@ use App\Http\Controllers\generalController;
 use Input;
 use Hash;
 use App\library\element;
-
+use Mail;
+use App\Events\SomeEvent;
 class user_controller extends generalController {
 
     public function show() {
-        return view("admin.v_user", ['autoComplete' => element::autoComplete("posts", "title", "username", ""),
-            'multiSelect' => element::multiSelect("user_group", "title", "userGroup", ""),
+        return view("admin.v_user",[
+            'multiSelect' => $this->ms("user_group", "title", "", ""),
+            'combo'=>  $this->gd(3,1, false, false)
         ]);
     }
 
     public function add() {
-        if (!empty(trim(Input::get('f1')))) {
-         //   if ((Input::get('f2') == Input::get('f3')) && (!empty(trim(Input::get('f2'))))) {
+ 
+ /*   Mail::send('welcome', [], function($message)
+    {   
+     
+      //  $message->from("ochiha.itachi.mahv@gmail.com");
+        $message->to('majid_yousefipoor@yahoo.com', 'myName')->subject('Mail via aallouch.com');
+      // dd($message);
+        
+    });
+        */
+        
+        
+     //  dd(event(new SomeEvent()));
+        $this->rules(['f1'=>"required",'f2'=>"required",'f3'=>"required",'f4'=>"required"]);
                 $this->model_obj->add();
-          //  } else
-            //    return $this->msg("error");
-        } else
-            return $this->msg(0);
+
+      
+       
     }
 
     public function edit() {
-        if (!empty(trim(Input::get('f1')))) {
-        //    if ((Input::get('f2') == Input::get('f3')) && (!empty(trim(Input::get('f2'))))) {
+                 $this->rules(['f1'=>"required",'f4'=>"required"]);
+                 if(!empty(Input::get("f2")) && Input::get("f2")!=Input::get("f3"))
+                     $this->msg("تکرار رمز عبور اشتباست");
+                         
                 $this->model_obj->edit();
-          //  } else
-          //      return dialog::message("pd", "خطا", "تکرار رمز عبور اشتباه وارد شده است.");
-        } else
-            return dialog::message("ls", "هشدار", "نام کاربری نمی تواند خالی باشد.");
+
     }
 
-    public function get() {
-
-        return $this->model_obj->get();
-    }
-
-    public function listx() {
-        return $this->model_obj->listx();
-    }
-
-    public function delete() {
-        $this->model_obj->delete();
-    }
-
-    public function userList() {
-        return view("v_users.UserLists", ["at1" => element::autoComplete("posts", "title", "s-title")]);
-    }
 
 }

@@ -161,7 +161,7 @@ abstract class ServiceProvider
     /**
      * Register the package's custom Artisan commands.
      *
-     * @param  array  $commands
+     * @param  array|mixed  $commands
      * @return void
      */
     public function commands($commands)
@@ -227,7 +227,7 @@ abstract class ServiceProvider
      */
     public function __call($method, $parameters)
     {
-        if ($method == 'boot') {
+        if ($method == 'boot') { // that was boot changed by me
             return;
         }
 

@@ -13,8 +13,13 @@
 </td>
 
 @stop
+@section('search')
+<tr>
+<td><label > شناسه</label></td>
+<td><input type="text" class="form-control"></td>
+</tr>
 
-
+@stop
 
 
 
@@ -30,13 +35,11 @@
     <tbody>
         <tr>
             <td><label  for="username" class="required"> نام گروه:</label></td>
-             <td><input type="text"   class="form-control" required></td>
-                     <td><label  for="username" class="required">گروه دسته :</label></td>
-             <td><input type="text"   class="form-control" required></td>
+             <td><input type="text"   class="form-control elm" id="f1" required></td>
         </tr>
         <tr>
             <td><label for="password" class="required">سرویس ها :</label></td>
-             <td><?PHP echo $multiSelect; ?></td>        
+            <td><div class="elm multiSelect" id="f2"><?PHP echo $multiSelect; ?></div></td>        
         </tr>
         <tr>
 

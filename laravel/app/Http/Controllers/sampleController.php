@@ -9,8 +9,11 @@ use Input;
 use Hash;
 use App\library\element;
 
-class sample extends Controller {
+class sample extends generalController {
 
+    public function show() {
+        return view(ViewPage);
+    }
     public function add() {
         $this->model_obj->add();
     }

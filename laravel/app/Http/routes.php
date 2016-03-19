@@ -20,10 +20,11 @@ Route::group(['middleware' => 'auth'], function () {
     });
     
         Route::post("listData","generalController@getListData");
-     
+        Route::get("getListExcel","generalController@getListExcel");
     
-       Route::post("services/{servId}/{servActn}","manager@detect");
+       Route::post("services/{servId}/{servActn}/{extra?}","manager@detect");
        Route::post("upload/{servId}", "generalController@upload");
+        Route::post("removeUpload", "generalController@removeUpload");
     
 });
 
@@ -39,7 +40,7 @@ Route::get('sys_admin', function () {
 Route::group(['namespace' => 'c_admin'], function () {
     Route::post('userLogin', "signController@login");
 });
-Route::group(['middleware' => 'auth', 'namespace' => 'c_admin'], function () {
+Route::group(['namespace' => 'c_admin'], function () {
     Route::get("userLogout", "signController@logout"); 
 });
 

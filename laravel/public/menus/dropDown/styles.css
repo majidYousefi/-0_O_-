@@ -35,21 +35,21 @@
   z-index: 2;
   font-size: 16px;
   text-decoration: none;
-   color: #FAF4F4;
-background: rgba(59, 63, 69, 0.83);
+   color: #9D9D9D;
+background: rgba(34, 34, 34, 1);
   -webkit-transition: color .2s ease;
   -o-transition: color .2s ease;
   transition: color .2s ease;
-  border: 1px solid rgba(189, 189, 189, 0.21);
+ // border: 1px solid rgba(189, 189, 189, 0.21);
 }
 #cssmenu > ul > li > a:hover {
-  color:  rgb(20, 179, 226);
+  color:  white;
   //text-shadow: 0 0 5px #00c6ff
 
 }
 #cssmenu ul > li.has-sub > a:after {
   position: absolute;
-  left: 15%;
+  left: 14.6%;
   top: 19px;
   z-index: 5;
   display: block;
@@ -65,7 +65,7 @@ background: rgba(59, 63, 69, 0.83);
 }
 #cssmenu ul > li.has-sub > a:before {
   position: absolute;
-  left: 13%;
+  left: 12.5%;
   top: 23px;
   display: block;
   width: 10px;

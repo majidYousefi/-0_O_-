@@ -14,6 +14,18 @@ use Input;
 class post_controller extends generalController {
 
     public function show($lang = '') {
-        return view("admin.v_posts", ["editor" => element::editor('newPost','', '320', $lang)]);
+        
+        /*
+         *             Excel::create('Filename', function($excel) {
+
+})->download('xlsx');
+         */
+        return view("admin.v_posts", ["editor" => $this->ed()
+                ,"editor2" => $this->ed()]);
     }
+       public function add() {
+        
+     dd(Input::get());
+    }
+    
 }

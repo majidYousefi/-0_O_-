@@ -16,27 +16,29 @@
         <link rel="stylesheet" href="css/ajaxLoader.css" type="text/css">
         <script src="plugins/growl/javascripts/jquery.growl.js" type="text/javascript"></script>
         <link href="plugins/growl/stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />
-        <script src="plugins/autocomplete/jquery.easy-autocomplete.min.js"></script> 
-        <link rel="plugins/autocomplete/stylesheet" href="easy-autocomplete.min.css"> 
+        <!--<script src="plugins/autocomplete/jquery.easy-autocomplete.min.js"></script> 
+        <link rel="plugins/autocomplete/stylesheet" href="easy-autocomplete.min.css"> -->
         <script src="plugins/Datepicker-persianDatepicker/js/persianDatePicker.js"></script> 
-        <link rel="stylesheet" href="plugins/Datepicker-persianDatepicker/css/persianDatePicker-default.css"> 
-    
-                <link rel="stylesheet" href="css/panel.css">
+        <link rel="stylesheet" href="plugins/Datepicker-persianDatepicker/css/persianDatePicker-latoja.css"> 
+	<script src="ckeditor/ckeditor.js"></script>
+	<link rel="ckeditor/samples/css/samples.css">
+        <link rel="stylesheet" href="css/panel.css">
         <script>
             function csrf()
             {
                 return "<?php echo csrf_token(); ?>";
             }
-            
-
-            
-            
-
+            $(document).ready(function () {
+       $(".datePicker").persianDatepicker({
+            theme: 'latoja',
+            cellWidth: 42,
+            cellHeight: 25});
+        });
         </script>
 
     </head>
     <body>
-        
+
     <center>
         <div class="spinner-loader"  id="ajaxLoader">
             Loading…
@@ -73,50 +75,70 @@
             </div>
         </div>
     </nav>
+    <div class="container" style="   width: 86%;float:left;  overflow: auto;  padding: 0;height:600px;" >
 
+        <ul class="nav nav-tabs" id="TabIndex">
+        </ul>
+
+        <div class="tab-content"  id="TabPlace"></div>
+    </div>
 
     <div class="rightPanel">
         <div id='cssmenu' style="float: right;
              width: 100%;">
-            <ul>
-                <li class=' has-sub'><a href='#' >کالا</a>
+        <ul>
+           <!--         <li class=' has-sub'><a href='#' >کالا</a>
                     <ul>
-                        <li ><a href='#' class="fill"  name="0" >Product 1</a>     </li>
+                        <li ><a href='#' class="fill"  name="2" >Product 1</a>     </li>
                         <li ><a href='#' >Product 2</a>         </li>
                     </ul>
                 </li>
 
                 <li class=' has-sub'><a href='#'>سرویس</a>
                     <ul>
-                        <li ><a href='#' class="fill" name="2">گروه کاربری</a>     </li>
+                        <li ><a href='#' class="fill" name="3">گروه کاربری</a>     </li>
                         <li ><a href='#' class="fill" name="1">کاربر</a>         </li>
-                        <li ><a href='#' class="fill"  name="3" >سرویس ها</a>         </li>
+                        <li ><a href='#' class="fill"  name="4" >سرویس ها</a>         </li>
                     </ul>
                 </li>
+      -->
+                <?PHP 
+                foreach($serv_group as $group)
+                {
+                    echo " <li class=' has-sub'><a href='#'>$group->title</a><ul>";
+                        foreach ($services as $serv) {
+                            if($serv->parent_id == $group->id)
+                               echo "<li><a href='#' class='fill' name=$serv->id>$serv->title</a>     </li>";
+                        }
+                        echo '</ul></li>';
+                }
                 
-                    <li class=' has-sub'><a href='#'>tt</a>
+                ?>
+  <!--  
+                <li class=' has-sub'><a href='#'>tt</a>
                     <ul>
-                  <?PHP 
-                  foreach($services as $serv)
-                  {
-                      echo "<li><a href='#' class='fill' name=$serv->id>$serv->title</a>     </li>";
-                  }
-                  ?>
+                        <?PHP
+                        foreach ($services as $serv) {
+                            echo "<li><a href='#' class='fill' name=$serv->id>$serv->title</a>     </li>";
+                        }
+                        ?>
                     </ul>
                 </li>
-                
-                <li><a href='#'>About</a></li>
+
+            <li><a href='#'>About</a></li>
                 <li><a href='#'>Contact</a></li>
+            
+             -->
             </ul>
         </div>
     </div>
 
     <!--********* MAIN DIV ********** -->
-    <div id="mainPanel">  </div>
-    
+
+
     <div id="growls" class="default"></div>
-    
-    
+
+
 
 </body>
 

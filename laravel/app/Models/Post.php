@@ -14,8 +14,9 @@ class Post extends generalModel {
     protected $table = 'posts';
 
     public function add() {
+        dd(Input::all());
         $title = Input::get("f1");
-        $body = Input::get("f3");
+        $body = Input::get("f2");
         $importer_id = Auth::user()['attributes']['id'];
         $this->title = $title;
         $this->body = $body;
@@ -26,7 +27,7 @@ class Post extends generalModel {
     public function edit() {
         $t = $this::find(Input::get('id'));
         $t->title = Input::get("f1");
-        $t->body = Input::get("f3");
+        $t->body = Input::get("f2");
         $t->save();
     }
 
@@ -58,14 +59,13 @@ class Post extends generalModel {
 
 
         $data['count'] = sizeof($count);
-        return json_encode($data);
+        return ($data);
     }
 
     public function get() {
         return DB::select(DB::raw("SELECT "
                                 . "title as f1,"
-                                . "0 as f2,"
-                                . "body as f3"
+                                . "body as f2"
                                 . " FROM `$this->table`"
                                 . " WHERE id=" . Input::get('id')));
     }

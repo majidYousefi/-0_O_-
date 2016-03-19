@@ -46,12 +46,14 @@
 }
 
 .pdp-latoja .pdp-header{
-    background-color: #333333;    
+   // background-color: #333333;    
+     background-color: #797B7E;
     border: 1px solid #555555;   
     padding: 2px;
     font-weight: bold;    
-    text-shadow: 0 1px 1px rgba(255,255,255,.8);
-    background-color: #e0e8ec;
+    color:whitesmoke;
+   // text-shadow: 0 1px 1px rgba(255,255,255,.8);
+  //  background-color: #e0e8ec;
 -moz-box-shadow: 0 1px 0 rgba(255,255,255,.53), inset 0 -1px 0 rgba(0,0,0,.12);
 -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.53), inset 0 -1px 0 rgba(0,0,0,.12);
 box-shadow: 0 1px 0 rgba(255,255,255,.53), inset 0 -1px 0 rgba(0,0,0,.12);
@@ -135,8 +137,9 @@ background-image: linear-gradient(bottom, rgba(0,0,0,.21) 0%, rgba(255,255,255,.
 
 /* Days of the week */
 .pdp-latoja .dows {  
-    background: #eeeeee;      
-    margin-bottom: 5px;
+  background: #777777;
+  margin-bottom: 5px;
+  color: whitesmoke;
 }
 .pdp-latoja .dow {            
     font: bold 14px 'helvetica';

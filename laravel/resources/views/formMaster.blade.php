@@ -1,12 +1,13 @@
 
 <div id="cont">
-    <form method="post" id="formx"  >
+    <div  id="mainForm" class="mainForm"  >
         @section('form')
         @show
-    </form>
-    <button  id="addButton" class="btn btn-default" onclick="do_actn('a')">ارسال</button>
-    <button  id="editButton" class="btn btn-default" style="display: none;">ویرایش</button>
-    <button  id="cancelButton" class="btn btn-default" style="display: none;">انصراف</button>
+    </div>
+
+    <button  id="addButton" class="btn btn-default addButton" onclick="do_actn('a')"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>ارسال</button>
+    <button  id="editButton" class="btn btn-default editButton" onclick="do_actn('e')" style="display: none;"><span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>ویرایش</button>
+    <button  id="cancelButton" class="btn btn-default cancelButton" style="display: none;"><span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>انصراف</button>
 </div>
 
 

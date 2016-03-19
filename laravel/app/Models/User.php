@@ -64,9 +64,7 @@ class User extends generalModel implements AuthenticatableContract, Authorizable
                                 . " WHERE id=" . Input::get('id')));
     }
 
-    public function delete() {
-        DB::table($this->table)->where('id', '=', Input::get('id'))->delete();
-    }
+
 
     public function listx() {
         $from = (NULL !== (Input::get('from'))) ? Input::get('from') : 0;
@@ -74,25 +72,25 @@ class User extends generalModel implements AuthenticatableContract, Authorizable
         $cond = Input::get('data');
         
         //****** قسمت هایی که باید تغییر بکند. بالا و پایین همیسشه ثایته
-        $sql = "SELECT
-                id as f1,
-                username as f2,
-                user_group_id as f3
-                FROM `$this->table`
+        $sql = "SELECT SQL_CALC_FOUND_ROWS
+                a.id as f1,
+                a.username as f2,
+                SUBSTR(GROUP_CONCAT(ug.title),1,150) as f3
+                FROM `$this->table` a
+                LEFT JOIN user_group ug on (FIND_IN_SET(ug.id,a.user_group_id))
                 WHERE 1 ";
         if (!empty($cond['s1'])) {
-            $sql.=" AND  id='{$cond['s1']}'";
+            $sql.=" AND  a.id='{$cond['s1']}'";
         }
         if (!empty($cond['s2'])) {
-            $sql.=" AND username LIKE '%" . $cond['s2'] . "%'";
+            $sql.=" AND a.username LIKE '%" . $cond['s2'] . "%'";
         }
         //**********
         
-        $sql.=' ORDER BY id DESC';
-        $result = DB::select(DB::raw($sql));
-        $data = array_slice($result,$from,$to);
-        $data['count'] = sizeof($result);
-        return json_encode($data);
+        $sql.="GROUP BY a.id ORDER BY a.id DESC LIMIT $from,$to";
+        $data = DB::select(DB::raw($sql));
+        $data['count'] = DB::select(DB::raw("SELECT FOUND_ROWS() as count"))[0]->count;
+        return ($data);
     }
 
 }

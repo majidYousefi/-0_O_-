@@ -13,10 +13,10 @@ $('#cssmenu li.active').addClass('open').children('ul').show();
 		else {
 			element.addClass('open');
 			element.children('ul').slideDown(200);
-			element.siblings('li').children('ul').slideUp(200);
-			element.siblings('li').removeClass('open');
-			element.siblings('li').find('li').removeClass('open');
-			element.siblings('li').find('ul').slideUp(200);
+			//element.siblings('li').children('ul').slideUp(200);
+			//element.siblings('li').removeClass('open');
+			//element.siblings('li').find('li').removeClass('open');
+			//element.siblings('li').find('ul').slideUp(200);
 		}
 	});
 
