@@ -12,13 +12,13 @@ use Mail;
 use App\Events\SomeEvent;
 class user_controller extends generalController {
 
-    public function show() {
+  /*  public function show() {
         return view("admin.v_user",[
             'multiSelect' => $this->ms("user_group", "title", "", ""),
             'combo'=>  $this->gd(3,1, false, false)
         ]);
     }
-
+*/
     public function add() {
  
  /*   Mail::send('welcome', [], function($message)

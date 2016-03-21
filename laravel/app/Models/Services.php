@@ -70,8 +70,8 @@ class Services extends generalModel {
 
         //****** قسمت هایی که باید تغییر بکند. بالا و پایین همیسشه ثایته
         $sql = "SELECT SQL_CALC_FOUND_ROWS
-                id as f1,
-                title as f2    
+                id ,
+                title   
                 FROM `$this->table` 
                 WHERE 1 ";
         if (!empty($cond['s1'])) {

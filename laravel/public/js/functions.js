@@ -139,7 +139,7 @@ function get(id)
             },
             success: function (data) {
                 clearForm();
-                $("#" + tab + " .addButton").fadeOut();
+                $("#" + tab + " .addButton").hide();
                 $("#" + tab + " .editButton").fadeIn().unbind().bind({
                     click: function () {
                         do_actn("e", id);
@@ -148,8 +148,8 @@ function get(id)
                 });
                 $("#" + tab + " .cancelButton").fadeIn().unbind().bind({
                     click: function () {
-                        $("#" + tab + " .editButton").fadeOut().unbind();
-                        $(this).fadeOut().unbind();
+                        $("#" + tab + " .editButton").hide().unbind();
+                        $(this).hide().unbind();
                         $("#" + tab + " .addButton").fadeIn();
                         clearForm();
 
@@ -159,6 +159,7 @@ function get(id)
                 var d = data.split('__@__');
                 data = d[0];
                 var details = d[1];
+                details= $.parseJSON(details);
                 data = $.parseJSON(data);
                 for (var j in data[0])
                 {
@@ -169,8 +170,9 @@ function get(id)
                     }
                 }
 
-                //     if (!details)
-                fillDetails(details);
+
+                   if (details != null)
+                       fillDetails(details);
                 window.scrollBy(0, -10000);
             }
         });
@@ -192,8 +194,8 @@ function fill(name)
         $("#TabPlace ").append('<div id="' + menu + '" class="tab-pane fade  "><div id="mainPanel' + (window.index) + '"></div></div>');
         $("#TabPlace>div").removeClass('active in');
         $("#TabPlace>div:last-child").addClass('active in');
-        window.queue1.push(menu);
-        window.queue2.push(menu);
+       // window.queue1.push(menu);
+       // window.queue2.push(menu);
         // var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
         var zurl = "services/" + window.last_serv_id + "/s";
         $.ajax({
@@ -206,8 +208,8 @@ function fill(name)
                     location.reload();
                 },
                 500: function () {
-                    window.queue1.shift();
-                    window.queue2.shift();
+                   // window.queue1.shift();
+                   // window.queue2.shift();
                     $.growl.error({message: "خطا در سمت سرور"});
                 }
             },
@@ -220,7 +222,8 @@ function fill(name)
                     var body = data.split('__@__');
                     var listx = body[1];
                     body = body[0];
-                    $("#" + window.queue1.shift()).html(createPage(body));
+                    //window.queue1.shift()
+                    $("#" + menu).html(createPage(body));
                     //  if ($(data).filter('#listx').text() && listx)
                     firstListFill(listx);
 
@@ -234,7 +237,7 @@ function fill(name)
                 }
                 catch (e)
                 {
-                    window.queue2.shift();
+                    //window.queue2.shift();
                 }
 
             }
@@ -299,7 +302,8 @@ function firstListFill(data)
 {
     if (!data)
         return;
-    var tab = window.queue2.shift();
+   // var tab = window.queue2.shift();
+     var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
     $("#" + tab + " .listx tbody").html('');
     data = $.parseJSON(data);
 
@@ -327,7 +331,7 @@ function firstListFill(data)
     delete data['count'];
     var tr = "";
     for (var k in data) {
-        var id = data[k]['f1'];
+        var id = data[k]['id'];
         tr += "<tr>";
         tr += "<td  style='text-align: -webkit-center;'>";
         if (window.deleteButton)
@@ -406,7 +410,7 @@ function fillList()
                 delete data['count'];
                 var tr = "";
                 for (var k in data) {
-                    var id = data[k]['f1'];
+                    var id = data[k]['id'];
                     tr += "<tr>";
                     tr += "<td  style='text-align: -webkit-center;'>";
                     if (window.deleteButton)
@@ -482,8 +486,8 @@ function sendFormAjax(d)
                     location.reload();
                 },
                 500: function () {
-                    window.queue1.shift();
-                    window.queue2.shift();
+                  //  window.queue1.shift();
+                   // window.queue2.shift();
                     $.growl.error({message: "خطا در سمت سرور"});
                 }
             },
@@ -527,8 +531,8 @@ function editFormData(id, d)
                 if (!data)
                 {
                     $.growl.notice({message: "عملیات با موفقیت انجام شد ."});
-                    $("#" + tab + " .editButton").fadeOut().unbind();
-                    $("#" + tab + " .cancelButton").fadeOut().unbind();
+                    $("#" + tab + " .editButton").hide().unbind();
+                    $("#" + tab + " .cancelButton").hide().unbind();
                     $("#" + tab + " .addButton").fadeIn();
                     clearForm();
                     do_actn('l');
@@ -825,15 +829,15 @@ function  uploadVisual(_this)
         processData: false, // tell jQuery not to process the data
         contentType: false, // tell jQuery not to set contentType
         beforeSend: function () {
-           // $(_this).parent().find(".uploadButton>i").remove();
-         //   $(_this).parent().find(".uploadButton").append("<marquee scrollamount='1'  direction='up' style='width:15px;  float: left;' ><i class='glyphicon glyphicon-open' ></i></marquee>");
-          $(_this).parent().find("button").addClass('waitGif');//.css({'background':"url('http://localhost/bCodeIgniter/galleries/gif/ajax_loader_3.gif') no-repeat"});
-   
+            // $(_this).parent().find(".uploadButton>i").remove();
+            //   $(_this).parent().find(".uploadButton").append("<marquee scrollamount='1'  direction='up' style='width:15px;  float: left;' ><i class='glyphicon glyphicon-open' ></i></marquee>");
+            $(_this).parent().find("button").addClass('waitGif');//.css({'background':"url('http://localhost/bCodeIgniter/galleries/gif/ajax_loader_3.gif') no-repeat"});
+
         },
         statusCode: {
             500: function () {
-             //   $(_this).parent().find(".uploadButton>marquee").remove();
-             //   $(_this).parent().find(".uploadButton").append("<i class='glyphicon glyphicon-open' ></i>");
+                //   $(_this).parent().find(".uploadButton>marquee").remove();
+                //   $(_this).parent().find(".uploadButton").append("<i class='glyphicon glyphicon-open' ></i>");
                 if (window.tryAgain) {
                     uploadVisual(_this);
                     window.tryAgain = false;
@@ -847,10 +851,10 @@ function  uploadVisual(_this)
                 myCanvas(data, _this);
             $(_this).parent().find(".imgUploadLink").html($("<a href='" + data + "' target='_blank'>" + '<span class="glyphicon glyphicon glyphicon-link"  ></span>' + d['type'].split("/")[1] + "</a>"));
             $(_this).parent().find(".imgUploadLink").append($('<span class="glyphicon glyphicon-remove-sign deleteFile"  ></span>'));
-           $(_this).parent().find("button").removeClass('waitGif');    
-    //    $(_this).parent().find("button").css({'background-image':"url('http://localhost/bCodeIgniter/galleries/gif/ajax_loader_3.gif')"});
-           // $(_this).parent().find(".uploadButton>marquee").remove();
-           // $(_this).parent().find(".uploadButton").append("<i class='glyphicon glyphicon-open' ></i>");
+            $(_this).parent().find("button").removeClass('waitGif');
+            //    $(_this).parent().find("button").css({'background-image':"url('http://localhost/bCodeIgniter/galleries/gif/ajax_loader_3.gif')"});
+            // $(_this).parent().find(".uploadButton>marquee").remove();
+            // $(_this).parent().find(".uploadButton").append("<i class='glyphicon glyphicon-open' ></i>");
             //   console.log(data);
             // alert(data);
             /*if (!id)
@@ -1035,7 +1039,7 @@ function removeRowDetail(_this) {
 
 function fillDetails(data) {
     var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
-    var data = $.parseJSON(data);
+  //  var data = $.parseJSON(data);
     for (var j in data['details']) {
         if ($("#" + tab + " .mainForm #" + j).length > 0) {
             $("#" + tab + " .mainForm #" + j).each(function () {
@@ -1214,8 +1218,8 @@ function getThisElement(_this) {
     else if ($(_this).hasClass("fileUploader"))
         return $(_this).find(".imgUploadLink > a").attr('href')
 
-    else if ($(_this).hasClass("autoCompo"))
-        return $(this).find('select')[0].value;
+    else if ($(_this).hasClass("comboSelect"))
+        return $(_this).find("select").val();
 
     else if ($(_this).hasClass("editor"))
         return $(_this).find(".cke_wysiwyg_frame").contents().find(".cke_editable").html();
@@ -1275,7 +1279,7 @@ function setThisElement(_this, data) {
         }
         catch (e) {
         }
-        $(_this).find('div').children().each(function () {
+        $(_this).find('.mus>label').children().each(function () {
             for (var k = 0; k < ch.length; k++)
             {
 
@@ -1347,13 +1351,16 @@ function createPage(data) {
 
     }
 //onclick=do_actn('e')
-    var page = '<div class="buttonContainer clear">';
+    var page = '';
     page += "<div id='cont' style='  display: inline-block;'><div  id='mainForm' class='mainForm' style='  display: block;float: right;' >" + form + details + "</div>";
+    page += '<div class="buttonContainer clear">';
     if (allow_add)
-        page += "<button  id='addButton' class='btn btn-primary addButton' onclick=do_actn('a')><span class='glyphicon glyphicon-send' aria-hidden='true'></span>ارسال</button>";
+        page += "<button  id='addButton' class='btn btn-primary addButton' onclick=do_actn('a')><span class='glyphicon glyphicon-send' aria-hidden='true'></span>ثبت</button>";
+    page += "<button  id='cancelButton' class='btn btn-warning cancelButton' style='display: none;'><span class='glyphicon glyphicon-floppy-remove' aria-hidden='true'></span>انصراف</button>";
     if (allow_edit)
         page += "<button  id='editButton' class='btn btn-info editButton'  style='display: none;'><span class='glyphicon glyphicon-floppy-saved' aria-hidden='true'></span>ویرایش</button>";
-    page += "<button  id='cancelButton' class='btn btn-warning cancelButton' style='display: none;'><span class='glyphicon glyphicon-floppy-remove' aria-hidden='true'></span>انصراف</button></div>";
+    page += '</div>';
+
     page += '</div>';
 
 
@@ -1428,13 +1435,7 @@ function createPage(data) {
     page += '</div>';
     page += "</div>";
     page += '<button class="btn btn-success searchButton" onclick=do_actn("l") style="  width: 150px;margin-bottom: 100px;">جستجو<span class="glyphicon glyphicon-search"  ></span></button>';
-
-
-
-
-
     return (page);
-
 }
 
 
@@ -1558,7 +1559,7 @@ function exchangeDataStyle(data, detailElelemnt) {
     else if (data['type'] == 'fileUploader') {
         element = "<div class='fileUploader " + cClass + "' " + id + " >";
         element += label;
-           //  element += "";
+        //  element += "";
         element += " <button class='btn uploadButton'  " + jsEvent + "  >آپلود فایل <i class='glyphicon glyphicon-open'></i></button><br><br>";
         element += "<input type='file'  style='  display: none;'><span class='imageHolder'></span><span class='imgUploadLink'></span>";
         element += "</div>";
@@ -1583,11 +1584,11 @@ function exchangeDataStyle(data, detailElelemnt) {
                 success: function (data) {
                     data = $.parseJSON(data);
                     for (var k = 0; k < data.length; k++)
-                        if (data[k]['f1']){
+                        if (data[k]['f1']) {
                             element += "<label style='  font-weight: initial;'>";
                             element += "<input type='checkbox'  value='" + data[k]['f1'] + "'>" + data[k]['f2'] + "";
                             element += "</label><br>";
-                    }
+                        }
                 }
             });
 

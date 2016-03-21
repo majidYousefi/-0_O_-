@@ -11,9 +11,7 @@ use App\library\element;
 
 class service_group_controller extends generalController {
 
-    public function show() {
-        return view("admin.v_service_group");
-    }
+
 
     public function add() {
         $this->model_obj->add();

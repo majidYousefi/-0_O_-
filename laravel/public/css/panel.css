@@ -387,7 +387,7 @@ background-color: whitesmoke;
   background-color: rgb(123, 118, 118);
   color: whitesmoke;
   padding: 0;
-  height: 35px;
+  height: 30px;
       border:0;
 
 }
@@ -439,7 +439,7 @@ background-color: whitesmoke;
 }
 .imageHolder{
      display: block;
-       background-color: white !important;
+       background-color: initial !important;
 }
 
 input[type=number] {
@@ -526,8 +526,12 @@ input[type=number] {
 
         text-align: center;
 }
+.detail tr >td{
+          vertical-align: top;
+}
 .detail tr >td:not(:first-child){
     width: 320px;
+
 }
 
 .elm{
@@ -650,5 +654,11 @@ select {
 }
 
 .buttonContainer{
-     width: 1250px;  display: flex;
+     width: 1250px;  
+     display: flex;
+       margin-right: 10px;
+}
+
+.removeRowButton{
+      margin-top: 10px;
 }

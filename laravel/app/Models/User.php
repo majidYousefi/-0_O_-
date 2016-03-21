@@ -73,7 +73,7 @@ class User extends generalModel implements AuthenticatableContract, Authorizable
         
         //****** قسمت هایی که باید تغییر بکند. بالا و پایین همیسشه ثایته
         $sql = "SELECT SQL_CALC_FOUND_ROWS
-                a.id as f1,
+                a.id,
                 a.username as f2,
                 SUBSTR(GROUP_CONCAT(ug.title),1,150) as f3
                 FROM `$this->table` a

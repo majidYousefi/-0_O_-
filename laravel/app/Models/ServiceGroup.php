@@ -35,13 +35,15 @@ class ServiceGroup extends generalModel {
 
         //****** قسمت هایی که باید تغییر بکند. بالا و پایین همیسشه ثایته
         $sql = "SELECT SQL_CALC_FOUND_ROWS 
-                id as f1,
-                title as f2
+                id ,
+                title 
                 FROM `$this->table`
                 WHERE 1 ";
-        if (!empty($cond['s1'])) {
-            $sql.=" AND  title LIKE '%{$cond['s1']}%'";
-        }
+         if (!empty($cond['s1'])) 
+            $sql.=" AND  id = '{$cond['s1']}' ";
+        if (!empty($cond['s2'])) 
+            $sql.=" AND  title LIKE '%{$cond['s2']}%'";
+        
         //**********       
         $sql.=" ORDER BY id DESC LIMIT $from,$to";
         $data = DB::select(DB::raw($sql));

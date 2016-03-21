@@ -13,7 +13,7 @@ class news_controller extends generalController {
 
 
     public function add() {
-        echo"<pre>";print_r(Input::get());die;
+        //echo"<pre>";print_r(Input::get());die;
         $this->model_obj->add();
     }
 

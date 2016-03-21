@@ -12,10 +12,6 @@ use DB;
 
 class services_controller extends generalController {
 
-    public function show() {
-        return view("admin.v_services", ['gd' => $this->gd('5','1',FALSE,TRUE)]);
-    }
-
     public function add() {
        /// print_r($this->model_obj->add());die;
         $this->rules(['f1' => "required", 'f2' => "required", 'f3' => "required", 'f4' => "required", 'f5' => "required", 'f6' => "required"]);

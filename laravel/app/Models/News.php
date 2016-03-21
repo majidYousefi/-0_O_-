@@ -26,7 +26,7 @@ class News extends generalModel {
         $this->detail[$i]['forign_key']='f_id';
         $this->detail[$i]['add_fields']='title,number,date';
         $this->detail[$i]['edit_fileds']=['title','number'];
-        $this->detail[$i]['select_fields']='id,title,number,date';
+        $this->detail[$i]['select_fields']='id,title,number,date,"http://localhost/aprojects/laravel/public/uploads/image/jpeg/small/6_2016_03_19_8750537790.jpeg"';
                        
                        
     }
@@ -56,8 +56,8 @@ class News extends generalModel {
 
         //****** قسمت هایی که باید تغییر بکند. بالا و پایین همیسشه ثایته
         $sql = "SELECT SQL_CALC_FOUND_ROWS 
-                id as f1,
-                title as f2
+                id,
+                title
                 FROM `$this->table`
                 WHERE 1 ";
         if (!empty($cond['s1'])) {
