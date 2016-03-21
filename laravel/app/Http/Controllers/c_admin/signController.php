@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Session;
-
+use Morilog\Jalali\Facades\jDate;
 class signController extends Controller {
 
     public function login() {
@@ -54,7 +54,7 @@ class signController extends Controller {
         $serv_group = DB::select(DB::raw("SELECT id,title
             FROM service_group WHERE FIND_IN_SET(id,'".$sg."')"
         ));
-        return view('admin.panel', ["services" => $serv,"serv_group"=>$serv_group]);
+        return view('admin.panel', ["services" => $serv,"serv_group"=>$serv_group,"date"=>jDate::forge()->format('l  j / m / Y ')]);
     }
 
 }

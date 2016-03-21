@@ -123,6 +123,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Morilog\Jalali\JalaliServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -130,6 +131,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+       
     ],
     /*
       |--------------------------------------------------------------------------
@@ -178,5 +180,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'jDate' => Morilog\Jalali\Facades\jDate::class,
+        'jDateTime' => Morilog\Jalali\Facades\jDateTime::class,
+        
     ],
 ];

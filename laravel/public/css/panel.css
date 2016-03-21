@@ -35,6 +35,22 @@ body
 
 
 }
+.menuPanel
+{
+    float: left;
+    width:86%;
+    height: 100%;
+   // background-color: black;
+
+
+}
+.clockHolder{
+      float: right;
+    width: 14%;
+    height: 45px;
+}
+
+
 .navbar{
     border-radius: 0px;
     margin: 0;
@@ -313,7 +329,7 @@ background-color: whitesmoke;
 }
 
 .addButton,.editButton,.cancelButton{
-    margin-top:100px;
+    margin-top:50px;
    //   color: white;
   //background-color: rgb(34, 34, 34);
     margin-bottom: 10px;
@@ -352,7 +368,7 @@ background-color: whitesmoke;
 }
 #TabIndex
 {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 .glyphicon-remove:hover
@@ -661,4 +677,47 @@ select {
 
 .removeRowButton{
       margin-top: 10px;
+}
+
+
+
+.clock {
+    width: 100%;
+    margin: 0 auto;
+    //padding: 30px;
+  //  border: 1px solid #333;
+    color: #fff;
+      background-color: rgb(34, 34, 34);
+  direction: initial;
+}
+
+.clock #Date {
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-align: center;
+    text-shadow: 0 0 5px #00c6ff;
+}
+
+.clock ul {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px;
+    list-style: none;
+    text-align: center;
+}
+
+.clock ul li {
+    display: inline;
+    font-size: 15px;
+    text-align: center;
+    font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+    text-shadow: 0 0 5px #00c6ff;
+}
+
+.clock #point {
+    position: relative;
+    -moz-animation: mymove 1s ease infinite;
+    -webkit-animation: mymove 1s ease infinite;
+    padding-left: 10px;
+    padding-right: 10px;
 }

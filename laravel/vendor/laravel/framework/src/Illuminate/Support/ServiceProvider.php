@@ -227,7 +227,7 @@ abstract class ServiceProvider
      */
     public function __call($method, $parameters)
     {
-        if ($method == 'boot') { // that was boot changed by me
+        if ($method == 'boot') {
             return;
         }
 

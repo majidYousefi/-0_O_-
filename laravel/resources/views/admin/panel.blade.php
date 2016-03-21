@@ -23,6 +23,7 @@
 	<script src="ckeditor/ckeditor.js"></script>
 	<link rel="ckeditor/samples/css/samples.css">
         <link rel="stylesheet" href="css/panel.css">
+      
         <script>
             function csrf()
             {
@@ -34,6 +35,34 @@
             cellWidth: 42,
             cellHeight: 25});
         });
+        
+        
+setInterval( function() {
+	// Create a newDate() object and extract the seconds of the current time on the visitor's
+	var seconds = new Date().getSeconds();
+	// Add a leading zero to seconds value
+	$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+	},1000);
+	
+setInterval( function() {
+	// Create a newDate() object and extract the minutes of the current time on the visitor's
+	var minutes = new Date().getMinutes();
+	// Add a leading zero to the minutes value
+	$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+    },1000);
+	
+setInterval( function() {
+	// Create a newDate() object and extract the hours of the current time on the visitor's
+	var hours = new Date().getHours();
+	// Add a leading zero to the hours value
+	$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
+    }, 1000);	
+
+        
+        
+        
+        
+        
         </script>
 
     </head>
@@ -75,15 +104,22 @@
             </div>
         </div>
     </nav>
-    <div class="container" style="   width: 86%;float:left;  overflow: auto;  padding: 0;height:600px;" >
-
-        <ul class="nav nav-tabs" id="TabIndex">
-        </ul>
-
-        <div class="tab-content"  id="TabPlace"></div>
+    
+    <div class="menuPanel">
+           <ul class="nav nav-tabs" id="TabIndex"></ul>
     </div>
 
     <div class="rightPanel">
+        <div class="clock">
+<div id="Date">{{ $date }}</div>
+  <ul>
+      <li id="hours"></li>
+      <li id="point">:</li>
+      <li id="min"></li>
+      <li id="point">:</li>
+      <li id="sec"></li>
+  </ul>
+</div>
         <div id='cssmenu' style="float: right;
              width: 100%;">
         <ul>
@@ -134,6 +170,9 @@
     </div>
 
     <!--********* MAIN DIV ********** -->
+    <div class="container" style="   width: 86%;float:left;  overflow: auto;  padding: 0;height:200px;  " >
+        <div class="tab-content"  id="TabPlace"></div>
+    </div>
 
 
     <div id="growls" class="default"></div>

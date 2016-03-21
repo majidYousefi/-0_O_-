@@ -15,8 +15,8 @@ $(document).ready(function () {
 
     $(document).ready(function () {
         $(window).resize(function () {
-            var bodyheight = $(document).height();
-            $(".container").height(bodyheight - 70);
+            var bodyheight = $(window).height();
+            $(".container").height(bodyheight - 110);
         }).resize();
     });
     $.ajaxSetup({timeout: 10000});
@@ -348,11 +348,11 @@ function firstListFill(data)
 }
 function fillList()
 {
-    var tab;
+
     // if (window.queue2.length > 0)
     //   tab = window.queue2.shift();
     //else if ($("#TabIndex"))
-    tab = $("#TabIndex .active >a").attr('href').replace('#', '');
+    var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
 
     // var tab=$(".listx").parent().attr('id');
     var serv = tab.split('_')[0];
