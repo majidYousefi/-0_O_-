@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\SomeEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
+use Mail;
 class EventListener
 {
     /**
@@ -26,7 +26,24 @@ class EventListener
      */
     public function handle(SomeEvent $event)
     {
-       mail("ochiha.itachi.mahv@gmail.com","My subject","First line of text");
-       return -1;
+     //   dd($event->x);
+      //mail("ochiha.itachi.mahv@gmail.com","My subject","First line of text");
+
+        
+        Mail::send('email', ['key' => 'value'], function($message) {
+            $message->to('ochiha.itachi.mahv@gmail.com', 'John Smith')->subject('Welcome!');
+        });
+
+
+/*
+ *     Mail::raw('متن ی', function($message) {
+            $message->to('ochiha.itachi.mahv@gmail.com', 'John Smith')->subject('Welcome!');
+        });
+
+
+ * 
+ * 
+ */
+        return -1;
     }
 }

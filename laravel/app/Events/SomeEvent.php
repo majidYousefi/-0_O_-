@@ -9,7 +9,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class SomeEvent extends Event
 {
     use SerializesModels;
-
+public $x;
     /**
      * Create a new event instance.
      *
@@ -18,6 +18,7 @@ class SomeEvent extends Event
     public function __construct()
     {
         //
+        $this->x='55';
     }
 
     /**

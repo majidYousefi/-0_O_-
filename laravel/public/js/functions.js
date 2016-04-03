@@ -92,6 +92,7 @@ $(document).ready(function () {
 
     });
 
+
 });
 
 
@@ -102,6 +103,7 @@ function do_actn(serv_actn, serv_id, name)
         case 's': //show page
             window.last_serv_id = serv_id;
             fill(name);
+
             break;
         case 'a': // send datat to controller to add
             sendFormAjax();
@@ -115,6 +117,9 @@ function do_actn(serv_actn, serv_id, name)
             break;
         case 'g': // get data from controller adn create list
             get(serv_id);
+            break;
+        case 'g_ex':
+            getExcel();
             break;
         case 'd': // get data from controller adn create list
             deleteRecord(serv_id);
@@ -159,7 +164,7 @@ function get(id)
                 var d = data.split('__@__');
                 data = d[0];
                 var details = d[1];
-                details= $.parseJSON(details);
+                details = $.parseJSON(details);
                 data = $.parseJSON(data);
                 for (var j in data[0])
                 {
@@ -171,8 +176,8 @@ function get(id)
                 }
 
 
-                   if (details != null)
-                       fillDetails(details);
+                if (details != null)
+                    fillDetails(details);
                 window.scrollBy(0, -10000);
             }
         });
@@ -194,8 +199,8 @@ function fill(name)
         $("#TabPlace ").append('<div id="' + menu + '" class="tab-pane fade  "><div id="mainPanel' + (window.index) + '"></div></div>');
         $("#TabPlace>div").removeClass('active in');
         $("#TabPlace>div:last-child").addClass('active in');
-       // window.queue1.push(menu);
-       // window.queue2.push(menu);
+        // window.queue1.push(menu);
+        // window.queue2.push(menu);
         // var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
         var zurl = "services/" + window.last_serv_id + "/s";
         $.ajax({
@@ -208,8 +213,8 @@ function fill(name)
                     location.reload();
                 },
                 500: function () {
-                   // window.queue1.shift();
-                   // window.queue2.shift();
+                    // window.queue1.shift();
+                    // window.queue2.shift();
                     $.growl.error({message: "خطا در سمت سرور"});
                 }
             },
@@ -234,6 +239,7 @@ function fill(name)
                      cellWidth: 42,
                      cellHeight: 25});
                      */
+                    $('[data-toggle="tooltip"]').tooltip();
                 }
                 catch (e)
                 {
@@ -247,6 +253,13 @@ function fill(name)
     });
 }
 
+function getExcel() {
+
+    var zurl = "services/" + window.last_serv_id + "/getListExcel";
+    window.open(zurl);
+
+}
+
 function navigation()
 {
     var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
@@ -255,13 +268,6 @@ function navigation()
         fillList();
     });
 
-    $(".getListExcel ").click(function () {
-        var from = $("#" + tab + " .listPage").val() * $("#" + tab + " .toOffset").val();
-        var to = $("#" + tab + " .toOffset").val();
-        var zurl = "getListExcel/" + serv + "/" + from + "/" + to;
-        alert(zurl);
-        window.open("getListExcel");
-    });
     var dont_change = '0';
 
     $(".navx").click(function () {
@@ -302,8 +308,8 @@ function firstListFill(data)
 {
     if (!data)
         return;
-   // var tab = window.queue2.shift();
-     var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
+    // var tab = window.queue2.shift();
+    var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
     $("#" + tab + " .listx tbody").html('');
     data = $.parseJSON(data);
 
@@ -375,8 +381,13 @@ function fillList()
             var sdata = {};
         var s = 1;
         $("#" + tab + " .searchBox .elm").each(function () {
-            if ($(this).attr("id"))
-                sdata[$(this).attr("id")] = getThisElement(this);
+            if ($(this).attr("id")) {
+                var getData = getThisElement(this);
+                if (getData)
+                    sdata[$(this).attr("id")] = getData;
+                else
+                    return;
+            }
 
         });
 
@@ -473,7 +484,7 @@ function sendFormAjax(d)
         var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
         var serv = tab.split('_')[0];
         var data = checkFixData();
-        if (data == '-1')
+        if (!data)
             return;
         var zurl = "services/" + serv + "/a";
         $.ajax({
@@ -486,8 +497,8 @@ function sendFormAjax(d)
                     location.reload();
                 },
                 500: function () {
-                  //  window.queue1.shift();
-                   // window.queue2.shift();
+                    //  window.queue1.shift();
+                    // window.queue2.shift();
                     $.growl.error({message: "خطا در سمت سرور"});
                 }
             },
@@ -517,6 +528,8 @@ function editFormData(id, d)
         var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
         var serv = tab.split('_')[0];
         var data = checkFixData();
+        if (!data)
+            return;
         data['id'] = id;
 
         if (data == '-1')
@@ -561,7 +574,7 @@ function clearForm()
         }
         if ($(this).is("div .fileUploader"))
         {
-            deleteFile(($(this).find('.imgUploadLink>.deleteFile'))[0]);
+            // deleteFile(($(this).find('.imgUploadLink>.deleteFile'))[0]);
             $(this).find(".imageHolder").html('');
             $(this).find(".imgUploadLink").html('');
             $(this).find("input").val('');
@@ -590,12 +603,20 @@ function  checkFixData()
 {
     var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
     var data = {};
-    var rules = 0;
+    var rules = false;
     //*****************FILL DATA IF ELEMENT'S HAVE 'NAME'
     var i = 1;
     $("#" + tab + " .mainForm .elm").each(function () {
-        if ($(this).attr('id'))
-            data[$(this).attr('id')] = getThisElement(this);
+        if ($(this).attr('id')) {
+            var getData = getThisElement(this);
+            if (getData)
+                data[$(this).attr('id')] = getData;
+            else
+                rules = true;
+        }
+
+
+
         //  alert("id:"+$(this).attr('id')+"   "+data[$(this).attr('id')]);
         /*  if ($(this).attr('id')) {
          if ($(this).is("input"))
@@ -724,9 +745,9 @@ function  checkFixData()
 
 
     //************CHECK IF DONT FILL REQUIRED ELEMENTS
-    if (rules == -1) {
+    if (rules) {
         $.growl.warning({message: " فیلد های اجباری را پر کنید !!!"});
-        //return -1;
+        return false;
     }
     data['details'] = checkFixDetailData();
     //console.log(checkFixDetailData());
@@ -990,7 +1011,7 @@ function related(_this, serv_id, gc_id) {
             $(_this).css({'background-color': 'white'});
         }
     }
-    else if ($(_this).parents(".elm").hasClass("comboSelect")) {
+    else if ($(_this).parents(".elm").hasClass("autoSelect")) {
         if ($(_this).children().length == 1) {
             $.ajax({
                 url: "services/" + serv_id + "/gc/" + gc_id,
@@ -1039,7 +1060,7 @@ function removeRowDetail(_this) {
 
 function fillDetails(data) {
     var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
-  //  var data = $.parseJSON(data);
+    //  var data = $.parseJSON(data);
     for (var j in data['details']) {
         if ($("#" + tab + " .mainForm #" + j).length > 0) {
             $("#" + tab + " .mainForm #" + j).each(function () {
@@ -1092,7 +1113,13 @@ function checkFixDetailData()
                 i = 0;
 
                 $(this).find('.elm').each(function () {
-                    data[detId][j][i] = getThisElement(this);
+                    var getData = getThisElement(this);
+                    if (getData)
+                        data[detId][j][i] = getData;
+                    else
+                        return;
+
+
                     /*  if ($(this).is("input")) {
                      data[detId][j][i] = this.value;
                      if ($(this).attr('required') && $.trim(this.value) == '') {
@@ -1200,29 +1227,53 @@ function checkFixDetailData()
     return data;
 }
 
+function rules(_this) {
+    $(_this).find("p").addClass("danger");
+    return false;
+}
 
 function getThisElement(_this) {
-
-    if ($(_this).hasClass("textBox") || $(_this).hasClass("checkBox") || $(_this).hasClass("datePick"))
+    $(_this).find("p").removeClass("danger");
+    if ($(_this).hasClass("textBox") || $(_this).hasClass("checkBox") || $(_this).hasClass("datePick")) {
+        if (($(_this).hasClass("require") && $.trim($(_this).find("input").val()) == ''))
+            return rules(_this);
         return $(_this).find("input").val();
+    }
 
-    else if ($(_this).hasClass("selectBox"))
+    else if ($(_this).hasClass("selectBox")) {
+        if (($(_this).hasClass("require") && $.trim($(_this).find("select").val()) == ''))
+            return rules(_this);
         return $(_this).find("select").val();
-
-    else if ($(_this).hasClass("textArea"))
+    }
+    else if ($(_this).hasClass("textArea")) {
+        if (($(_this).hasClass("require") && $.trim($(_this).find("textArea").text()) == ''))
+            return rules(_this);
         return $(_this).find("textArea").text();
+    }
 
-    else if ($(_this).hasClass("autoComplete"))
+    else if ($(_this).hasClass("autoComplete")) {
+        if (($(_this).hasClass("require") && $.trim($(_this).find("input").attr('id')) == ''))
+            return rules(_this);
         return $(_this).find("input").attr('id') + "^" + $(_this).find("input").val();
+    }
 
-    else if ($(_this).hasClass("fileUploader"))
-        return $(_this).find(".imgUploadLink > a").attr('href')
+    else if ($(_this).hasClass("fileUploader")) {
+        if (($(_this).hasClass("require") && $.trim($(_this).find(".imgUploadLink > a").attr('href')) == ''))
+            return rules(_this);
+        return $(_this).find(".imgUploadLink > a").attr('href');
+    }
 
-    else if ($(_this).hasClass("comboSelect"))
+    else if ($(_this).hasClass("autoSelect")) {
+        if (($(_this).hasClass("require") && ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0)))
+            return rules(_this);
         return $(_this).find("select").val();
+    }
 
-    else if ($(_this).hasClass("editor"))
+    else if ($(_this).hasClass("editor")) {
+        if (($(_this).hasClass("require") && $.trim($(_this).find(".cke_wysiwyg_frame").contents().find(".cke_editable").html()) == '<p><br></p>'))
+            return rules(_this);
         return $(_this).find(".cke_wysiwyg_frame").contents().find(".cke_editable").html();
+    }
 
     else if ($(_this).hasClass("multiSelect")) {
         var x = [];
@@ -1230,6 +1281,8 @@ function getThisElement(_this) {
             if (this.checked)
                 x.push($(this).val());
         });
+        if (($(_this).hasClass("require") && $.trim(x.join()) == ''))
+            return rules(_this);
         return  (x.length > 0) ? ("," + x.join() + ",") : x.join();
     }
 
@@ -1262,7 +1315,7 @@ function setThisElement(_this, data) {
     if ($(_this).hasClass("textArea"))
         $(_this).find("textarea").val(data);
 
-    if ($(_this).hasClass("selectBox") || $(_this).hasClass("comboSelect")) {
+    if ($(_this).hasClass("selectBox") || $(_this).hasClass("autoSelect")) {
 
         $(_this).find("select").children().each(function () {
             if (this.value == data) {
@@ -1317,6 +1370,7 @@ function createPage(data) {
     var details = '';
     var list = '';
     var search = '';
+    var serv_id = data['serv_id'];
     window.deleteButton = (data['delete'] === false) ? false : true;
     var allow_add = (data['add'] === false) ? false : true;
     var allow_edit = (data['edit'] === false) ? false : true;
@@ -1396,7 +1450,7 @@ function createPage(data) {
     page += '            <td></td>';
     page += list;
     page += '            <td style="width:10px;color:red;">';
-    page += '                <span class="glyphicon glyphicon-list-alt getListExcel " style="color: white;"></span>';
+    page += '                <span class="glyphicon glyphicon-list-alt getListExcel " style="color: white;" onclick=do_actn("g_ex")></span>';
     page += '            </td>';
     page += '        </tr>';
     page += '    </thead>';
@@ -1414,7 +1468,7 @@ function createPage(data) {
     page += '                    <span class="glyphicon glyphicon-chevron-left navx"></span>';
     page += '                    <span class="glyphicon glyphicon-step-backward navx"></span>';
     page += '                    <span class="glyphicon glyphicon-repeat repeat" style="float:right;padding: 6px;margin-left: 10px;"></span>';
-    page += '                    <select id="toOffset" class="toOffset" onchange=do_actn("l") style="float:right;width: 150px;border: 0;">';
+    page += '                    <select id="toOffset" class="toOffset small" onchange=do_actn("l") style="float:right;width: 150px;border: 0;">';
     page += '                        <option value="10">10</option>';
     page += '                        <option value="30">30</option>';
     page += '                       <option value="50">50</option>';
@@ -1475,9 +1529,11 @@ function exchangeDataStyle(data, detailElelemnt) {
     cClass += (data['cssClass']) ? " " + data['cssClass'] : '';
     cClass += (data['require']) ? " " + data['require'] : '';
     var id = (detailElelemnt) ? '' : " id= '" + data['id'] + "'";
-    var label = (!(detailElelemnt) && data['title']) ? "<p>" + data['title'] + "</p>" : '';
+    var label = (!(detailElelemnt) && data['title']) ? "<p>" + ((data['info']) ? "<i class='glyphicon glyphicon-info-sign' data-toggle='tooltip' data-placement='top' title='" + data['info'] + "'></i>" : '') + data['title'] + "</p>" : '';
     var label_2 = (!(detailElelemnt) && data['title']) ? "<span style='  margin-right: 5px;'>" + data['title'] + "</span>" : '';
-    //*************editor
+    //var info = '';//(data['info']) ? "<i class='glyphicon glyphicon-info-sign' data-toggle='tooltip' data-placement='top' title='"+data['info']+"'></i>" : '';
+    var dependency = (data['dependency']) ? ((data['type']=="autoComplete")?"onchange=":"onchange=")+"dependency(this,'"+data['dependency'][0]+"','"+data['dependency'][1]+"','"+data['dependency'][2]+"')": '';
+//*************editor
     var width = (data['width']) ? data['width'] : 900;
     var height = (data['height']) ? data['height'] : 165;
     var rand_id = "rand_id" + Math.floor(Math.random() * (100000 - 1 + 1) + 1);
@@ -1485,18 +1541,28 @@ function exchangeDataStyle(data, detailElelemnt) {
 
     if (data['type'] == 'textbox') {
         element = "<div class='textBox " + cClass + "' " + id + " >";
+        //element += info;
         element += label;
         element += "<input  class='form-control' type='text' " + jsEvent + " >";
         element += "</div>";
     }
+    else if (data['type'] == 'password') {
+        element = "<div class='textBox " + cClass + "' " + id + " >";
+        // element += info;
+        element += label;
+        element += "<input  class='form-control' type='password' " + jsEvent + " >";
+        element += "</div>";
+    }
     else if (data['type'] == 'textarea') {
         element = "<div class='textArea " + cClass + "' " + id + "  >";
+        //element += info;
         element += label;
         element += "<textarea  class='form-control' cols='55' rows='8'  " + jsEvent + " ></textarea>";
         element += "</div>";
     }
     else if (data['type'] == 'select') {
         element = "<div class='selectBox " + cClass + "' " + id + "  >";
+        // element += info;
         element += label;
         element += "<select  class='form-control'  " + jsEvent + " >";
         for (var m in data['value']) {
@@ -1505,11 +1571,12 @@ function exchangeDataStyle(data, detailElelemnt) {
         element += "</select>";
         element += "</div>";
     }
-    else if (data['type'] == 'comboSelect') {
-        element = "<div class='comboSelect " + cClass + "' " + id + "  >";
+    else if (data['type'] == 'autoSelect') {
+        element = "<div class='autoSelect " + cClass + "' " + id + "  >";
+        //element += info;
         element += label;
-        element += "<select  class='form-control' " + jsEvent + " >";
-        element += "<option value='0'>لطفا انتخاب کنید</option>";
+        element += "<select "+dependency+" class='form-control' " + jsEvent + " >";
+        element += "<option>لطفا انتخاب کنید</option>";
         if (data['gdd'] && data['gdd'] != '') {
             $.ajax({
                 url: "services/" + data['gdd'][0] + "/gc/" + data['gdd'][1],
@@ -1537,20 +1604,25 @@ function exchangeDataStyle(data, detailElelemnt) {
     else if (data['type'] == 'checkbox') {
         element = "<div class='checkBox " + cClass + "' " + id + "  >";
         element += "<label style='  font-weight: initial;'>";
+
+        // element += info;
+        element += label;
         element += "<input  type='checkbox' " + jsEvent + "  >";
-        element += label_2;
         element += "</label>";
         element += "</div>";
     }
     else if (data['type'] == 'autoComplete') {
+        var related = (data['gdd']) ? "onkeypress=related(this,'" + data['gdd'][0] + "','" + data['gdd'][1] + "')" : '';
         element = "<div class='autoComplete " + cClass + "' " + id + " >";
+        // element += info;
         element += label;
         element += "  <i class='glyphicon glyphicon-sort-by-attributes-alt'></i>";
-        element += "<input  id  " + jsEvent + "   class='form-control' >";
+        element += "<input  id  " +dependency + " "+ related + " " + jsEvent + "   class='form-control' >";
         element += "</div>";
     }
     else if (data['type'] == 'datePicker') {
         element = "<div class='datePick " + cClass + "' " + id + " >";
+        // element += info;
         element += label;
         element += "<i class='glyphicon glyphicon-calendar'></i>";
         element += "<input type='text' class='datePicker form-control'  placeholder='تاریخ ...'   " + jsEvent + "  />";
@@ -1558,6 +1630,7 @@ function exchangeDataStyle(data, detailElelemnt) {
     }
     else if (data['type'] == 'fileUploader') {
         element = "<div class='fileUploader " + cClass + "' " + id + " >";
+        // element += info;
         element += label;
         //  element += "";
         element += " <button class='btn uploadButton'  " + jsEvent + "  >آپلود فایل <i class='glyphicon glyphicon-open'></i></button><br><br>";
@@ -1566,6 +1639,7 @@ function exchangeDataStyle(data, detailElelemnt) {
     }
     else if (data['type'] == 'multiSelect') {
         element = "<div class='multiSelect  " + cClass + "' " + id + " >";
+        // element += info;
         element += label;
         element += "<div class='mus'>";
         if (data['gdd'] && data['gdd'] != '') {
@@ -1598,6 +1672,7 @@ function exchangeDataStyle(data, detailElelemnt) {
     }
     else if (data['type'] == 'editor') {
         element = "<div class='editor " + cClass + "' " + id + " >";
+        // element += info;
         element += label;
         element += "<textarea cols='80' id='" + rand_id + "'  class='editor_my' rows='10'></textarea>";
         element += "<script>CKEDITOR.replace( '" + rand_id + "' );\n\
@@ -1606,4 +1681,32 @@ function exchangeDataStyle(data, detailElelemnt) {
         element += "</div>";
     }
     return element;
+}
+
+function dependency(_this,elem_id,sev_id,gc_id){
+    $("#"+elem_id).find("select").find("option").remove();
+    var element='';
+        element += "<option>لطفا انتخاب کنید</option>";
+            $.ajax({
+                url: "services/" + sev_id + "/gc/" + gc_id,
+                data:{'d_id':$(_this).val()},
+                type: "POST",
+                async: false,
+                statusCode: {
+                    401: function () {
+                        location.reload();
+                    },
+                    500: function () {
+                        $.growl.warning({message: "خطا در  پیدا کردن فایل در سرور !"});
+                    }
+                },
+                success: function (data) {
+                    data = $.parseJSON(data);
+                    for (var k = 0; k < data.length; k++)
+                        if (data[k]['f1'])
+                            element += "<option value='" + data[k]['f1'] + "'>" + data[k]['f2'] + "</option>";
+                }
+            });       
+         $("#"+elem_id).find("select").append(element);
+
 }

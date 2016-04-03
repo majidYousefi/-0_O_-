@@ -606,7 +606,7 @@ input[type=number] {
 }
 
 /* style icon */
-.datePick .glyphicon,.autoComplete .glyphicon{
+.datePick .glyphicon-calendar,.autoComplete .glyphicon-sort-by-attributes-alt{
   position: absolute;
   padding: 10px;
   pointer-events: none;
@@ -649,7 +649,7 @@ margin-right:8px;
     border-radius: 0;
 }
 
-.comboSelect>.form-control,.selectBox>.form-control {
+.autoSelect>.form-control,.selectBox>.form-control {
     padding: 0;
 }
 
@@ -665,7 +665,7 @@ select {
     width:300px !important;
 }
 
-.textBox,.autoComplete,.comboSelect  {
+.textBox,.autoComplete,.autoSelect  {
     width: 300px;
 }
 
@@ -720,4 +720,17 @@ select {
     -webkit-animation: mymove 1s ease infinite;
     padding-left: 10px;
     padding-right: 10px;
+}
+.danger{
+    color:red !important;
+      font-weight: 600;
+}
+.danger:after{
+    //content: " \e101" !important;
+   // font-family: 'Glyphicons Halflings';
+    content: "* ! " !important;
+    //font-size:12px;
+    
+ //   float:left;
+ //     text-decoration: underline;
 }

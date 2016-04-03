@@ -56,6 +56,10 @@ class manager extends Controller {
             case 'd':
                 return $do->delete();
                 break;
+            case 'getListExcel':
+                Input::replace(array('to' => '100000'));
+                $do->getListExcel($do->show(session('services')[$serv_id]['view'])['list_colums']);
+                break;
             case 'gc':
                 if ($json_decode)
                     return json_encode($do->gc($extra));

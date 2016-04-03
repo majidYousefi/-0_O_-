@@ -8,8 +8,7 @@ use App\Http\Controllers\generalController;
 use Input;
 use Hash;
 use App\library\element;
-use Mail;
-use App\Events\SomeEvent;
+
 class user_controller extends generalController {
 
   /*  public function show() {
@@ -31,10 +30,10 @@ class user_controller extends generalController {
     });
         */
         
-        
-     //  dd(event(new SomeEvent()));
-        $this->rules(['f1'=>"required",'f2'=>"required",'f3'=>"required",'f4'=>"required"]);
-                $this->model_obj->add();
+        $this->sendMail("Salam",'',"ochiha.itachi.mahv@gmail.com","test");
+     //$this->runEvent("SomeEvent");
+       // $this->rules(['f1'=>"required",'f2'=>"required",'f3'=>"required",'f4'=>"required"]);
+        //        $this->model_obj->add();
 
       
        

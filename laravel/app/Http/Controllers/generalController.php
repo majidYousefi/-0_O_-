@@ -10,23 +10,25 @@ use Hash;
 use App\library\dialog;
 use App\library\element;
 use Validator;
-
+use Mail;
+use Excel;
 define("Model", "App\Models\\");
 
 class generalController extends manager {
 
     public $model_obj;
     public $request;
-
+    public $email_to;
+    public $email_subject;
     public function __construct($model_instance = 'User') {
         $model_instance = Model . $model_instance;
         $this->request = '';
         $this->model_obj = new $model_instance();
     }
 
-    public function show($view){
-      require_once "../resources/views/admin/$view.php";
-      return $config;
+    public function show($view) {
+        require_once "../resources/views/admin/$view.php";
+        return $config;
     }
 
     public function add() {
@@ -41,8 +43,9 @@ class generalController extends manager {
 
         return $this->model_obj->get();
     }
+
     public function getDetail() {
-         return $this->model_obj->getDetail();
+        return $this->model_obj->getDetail();
     }
 
     public function listx() {
@@ -56,11 +59,10 @@ class generalController extends manager {
     public function gc($id) {
         return $this->model_obj->gc($id);
     }
-     public function addDetail() {
+
+    public function addDetail() {
         return $this->model_obj->addDetail();
     }
-
-   
 
     public function msg($msgId = '0', $type = 'pd', $title = 'خطا') {
         print_r(dialog::message($type, $title, $msgId));
@@ -222,13 +224,45 @@ class generalController extends manager {
     }
 
     //Select getData GDD
-    public function gd($serv_id,$gc_number,$json_encode=FALSE, $required = FALSE) {
-        return element::autoCombo($this->detect($serv_id, 'gc', $gc_number,$json_encode),$required);
+    public function gd($serv_id, $gc_number, $json_encode = FALSE, $required = FALSE) {
+        return element::autoCombo($this->detect($serv_id, 'gc', $gc_number, $json_encode), $required);
     }
 
     //Get Excel From List
-    public function getListExcel($param) {
-        
+    public function getListExcel($titles) {
+        $GLOBALS['titles']=array_flatten($titles);
+        Excel::create('Filename', function($excel) {
+            $excel->sheet('Sheetname', function($sheet) {
+                $sheet->setAutoSize(true);
+                $data = array_reverse(json_decode(json_encode($this->listx()), true));
+                unset($data['count']);
+                $sheet->row(1,$GLOBALS['titles']);
+                $sheet->fromArray($data, null, 'A2', false, false);
+            });
+        })->export('xlsx');
+    }
+
+    public function runEvent($even_name) {
+        $even_name = "App\Events\\" . "$even_name";
+        event(new $even_name);
+    }
+
+    public function sendMail($text_or_viewFile,$exhangeValue,$to,$subject) {
+        $this->to=$to;
+        $this->email_subject=$subject;
+        if (is_array($exhangeValue)) {
+            Mail::send('email', ['key' => 'value'], function($message) {
+                $message->to($this->to)->subject($this->email_subject);
+            });
+        } else {
+   
+            Mail::raw('متن ی', function($message) {
+                  $message->to($this->to)->subject($this->email_subject);
+            });
+        }
+    }
+    public function pd($param){
+        echo"<pre>";print_r($param);die;
     }
 
 }

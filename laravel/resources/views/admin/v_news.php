@@ -8,15 +8,18 @@ $config = [
     'form_elements' => [
         ['type' => 'textbox', 'id' => 'f1', 'title' => 'تکسن معمولی', 'cssClass' => 'large', 'require' => 'require'],
         ['type' => 'checkbox', 'id' => 'f2', 'title' => 'چک باکس', "jsEvent" => "onload=alert('srgh')"],
-         ['type' => 'checkbox', 'id' => 'f2', 'title' => 'چک باکس', "jsEvent" => "onload=alert('srgh')"],
-        ['type' => 'autoComplete', 'id' => 'f3', 'title' => 'اتوکامپلیت', 'cssClass' => 'clear', "jsEvent" => "onkeypress=related(this,3,1)"],
-        ['type' => 'comboSelect', 'id' => 'f11', 'title' => 'اتوکامپلیت', 'cssClass' => 'small clear', 'gdd' => ['3', '1']],
-        ['type' => 'datePicker', 'id' => 'f4', 'title' => 'تاریخ'],
-        ['type' => 'textarea', 'id' => 'f5', 'title' => 'تاریخ', 'cssClass' => 'clear'],
-        ['type' => 'select', 'id' => 'f6', 'title' => 'تاریخ', 'value' => ["1" => "mard", "2" => "zan"]],
-        ['type' => 'fileUploader', 'id' => 'f7', 'title' => 'uplodaer'],
-        ['type' => 'multiSelect', 'id' => 'f16', 'title' => 'مولتی سلکت ', 'cssClass' => 'large clear', 'gdd' => ['3', '1']],
-        ['type' => 'editor', 'id' => 'f9', 'title' => 'کلمات کلیدی', 'cssClass' => 'clear' /* 'width'=>'300','height'=>'300' */],
+        ['type' => 'checkbox', 'id' => 'f2', 'title' => 'چک باکس', "jsEvent" => "onload=alert('srgh')", 'info' => 'نمایشگاه تجهیزات پزشکی دوره سوم'],
+        ['type' => 'autoComplete', 'id' => 'f3', 'title' => 'اتوکامپلیت', 'cssClass' => 'clear', 'gdd' => ['3', '1']],
+        ['type' => 'autoSelect', 'id' => 'f4', 'title' => 'اتوکامپsdsلیت', 'cssClass' => 'small clear', 'gdd' => ['3', '1']],
+        ['type' => 'datePicker', 'id' => 'f5', 'title' => 'تاریخ', 'require' => 'require', 'info' => 'نمایشگاه تجهیزات پزشکی دوره سوم'],
+        ['type' => 'password', 'id' => 'f6', 'title' => 'پسوورد', 'require' => 'require'],
+        ['type' => 'textarea', 'id' => 'f7', 'title' => 'تاریخ', 'cssClass' => 'clear'],
+        ['type' => 'select', 'id' => 'f8', 'title' => 'تاریخ', 'value' => ["1" => "mard", "2" => "zan"]],
+        ['type' => 'fileUploader', 'id' => 'f9', 'title' => 'uplodaer'],
+        ['type' => 'multiSelect', 'id' => 'f10', 'title' => 'مولتی سلکت ', 'cssClass' => 'large clear', 'gdd' => ['3', '1']],
+        ['type' => 'editor', 'id' => 'f11', 'title' => 'کلمات کلیدی', 'require' => 'require', 'cssClass' => 'clear' /* 'width'=>'300','height'=>'300' */],
+        ['type' => 'autoSelect', 'id' => 'f12', 'title' => 'اتوکامپلیت', 'cssClass' => 'clear', 'gdd' => ['3', '1'],"dependency"=>["f13","3","2"]],
+        ['type' => 'autoSelect', 'id' => 'f13', 'title' => 'اتوکامپلیت', 'cssClass' => 'clear'],
     ],
     'details' => [
         'd1' => [
@@ -41,7 +44,7 @@ $config = [
         ['type' => 'textbox', 'id' => 's4', 'label' => 'label_1'],
         ['type' => 'autoComplete', 'id' => 's5', 'label' => 'اتوکامپلیت'],
         ['type' => 'datePicker', 'id' => 's6', 'label' => 'تاریخ'],
-        ['type' => 'comboSelect', 'id' => 'f11', 'label' => 'اتوکامپلیت', 'gdd' => ['3', '1']],
+        ['type' => 'autoSelect', 'id' => 'f11', 'label' => 'اتوکامپلیت', 'gdd' => ['3', '1']],
     ]
 ];
 

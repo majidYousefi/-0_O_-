@@ -58,6 +58,7 @@ class UserGroup extends generalModel {
 
     public function gc($index) {
         $title = Input::get('title');
+        $d_id=Input::get('d_id');
         switch ($index) {
             case 1:
                 return DB::select(DB::raw("SELECT "
@@ -65,6 +66,14 @@ class UserGroup extends generalModel {
                                         . "title as f2"
                                         . " FROM `$this->table`"
                                         . " WHERE title LIKE '%" . $title . "%'"));
+
+                break;
+               case 2:
+                return DB::select(DB::raw("SELECT "
+                                        . "id as f1,"
+                                        . "title as f2"
+                                        . " FROM `$this->table`"
+                                        . " WHERE id LIKE '%" . $d_id . "%'"));
 
                 break;
         }
