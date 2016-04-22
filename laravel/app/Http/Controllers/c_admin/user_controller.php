@@ -18,6 +18,7 @@ class user_controller extends generalController {
         ]);
     }
 */
+
     public function add() {
  
  /*   Mail::send('welcome', [], function($message)
@@ -30,22 +31,17 @@ class user_controller extends generalController {
     });
         */
         
-        $this->sendMail("Salam",'',"ochiha.itachi.mahv@gmail.com","test");
+        //$this->sendMail("Salam",'',"ochiha.itachi.mahv@gmail.com","test");
      //$this->runEvent("SomeEvent");
-       // $this->rules(['f1'=>"required",'f2'=>"required",'f3'=>"required",'f4'=>"required"]);
-        //        $this->model_obj->add();
-
-      
        
+        $this->rules(['f1'=>"required",'f2'=>"required|same:f3",'f3'=>"required",'f4'=>"required"],$this->serv_id);
+              $this->model_obj->add();
+
     }
 
     public function edit() {
-                 $this->rules(['f1'=>"required",'f4'=>"required"]);
-                 if(!empty(Input::get("f2")) && Input::get("f2")!=Input::get("f3"))
-                     $this->msg("تکرار رمز عبور اشتباست");
-                         
+        $this->rules(['f1'=>"required",'f2'=>"same:f3",'f4'=>"required"],$this->serv_id);      
                 $this->model_obj->edit();
-
     }
 
 

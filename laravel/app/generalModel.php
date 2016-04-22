@@ -5,10 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use Input;
+use Http\Controllers\manager;
 
 class generalModel extends Model {
 
     public $detail;
+    function __construct() {
+         date_default_timezone_set('Asia/Tehran');
+    }
 
     public function add() {
         
@@ -32,7 +36,7 @@ class generalModel extends Model {
             foreach ($this->detail as $key => $detail) {
                 $data['details'][$key] = json_decode(json_encode(DB::select(DB::raw("SELECT {$detail['select_fields']}"
                                                 . " FROM `{$detail['table']}`"
-                                                . " WHERE `f_id` = '" . Input::get('id') . "'"))), 1);
+                                                . " WHERE `{$detail['forign_key']}` = '" . Input::get('id') . "'"))), 1);
                 foreach ($data['details'][$key] as $k => &$row)
                     $row = array_values($row);
             }
@@ -45,7 +49,7 @@ class generalModel extends Model {
     }
 
     public function gc($index) {
-        $title = Input::get('title');
+        $title = Input::get('params');
         switch ($index) {
             case 1:
                 return DB::select(DB::raw("SELECT "
@@ -58,7 +62,7 @@ class generalModel extends Model {
     }
 
     public function addDetail() {
-      //   echo"<pre>";print_r(Input::get('details'));die;
+        //   echo"<pre>";print_r(Input::get('details'));die;
         if (Input::get('details') !== null) {
             foreach (Input::get('details') as $key => $detail) {
                 foreach ($detail as $k => $row) {
@@ -68,8 +72,8 @@ class generalModel extends Model {
                         $VALUES = '';
                         foreach ($row as &$val)
                             $val = "'" . $val . "'";
-                        $VALUES = implode(',', array_slice($row, 0, sizeof(explode(",", $this->detail[$key]['add_fields']))));                      
-                        $VALUES = "'" . (($this->id !==null)?$this->id:Input::get('id')) . "'," . $VALUES;
+                        $VALUES = implode(',', array_slice($row, 0, sizeof(explode(",", $this->detail[$key]['add_fields']))));
+                        $VALUES = "'" . (($this->id !== null) ? $this->id : Input::get('id')) . "'," . $VALUES;
                         DB::insert("INSERT INTO `" . $this->detail[$key]['table'] . "`"
                                 . "(" . $add_fields . ")"
                                 . "VALUES($VALUES)");
@@ -84,11 +88,16 @@ class generalModel extends Model {
                                 . "SET $SET"
                                 . " WHERE `id` = '{$row['id']}'");
                     } else if ($row['action'] == 'delete') {
-                         DB::table($this->detail[$key]['table'])->where('id', '=', $row['id'])->delete();
+                        DB::table($this->detail[$key]['table'])->where('id', '=', $row['id'])->delete();
                     }
                 }
             }
         }
+    }
+
+    public function detect($serv_id, $action, $extra = '', $json_decode = TRUE) {
+        $manager = new Http\Controllers\manager();
+        return $manager->detect($serv_id, $action, $extra, $json_decode);
     }
 
 }

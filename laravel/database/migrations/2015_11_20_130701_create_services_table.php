@@ -23,6 +23,38 @@ class CreateServicesTable extends Migration {
             $table->string('parent_id');
             $table->timestamps();
         });
+                      DB::table('services')->insert(
+                        array(
+                                array(
+                                        'title' => 'کاربران',
+                                    'controller'=>'user_controller',
+                                     'model'=>'User',
+                                     'migrate'=>'User',
+                                     'view'=>'v_user'
+                                    
+                                ),
+                              array(
+                                        'title' => 'گروه کاربری',
+                                       'controller'=>'user_group_controller',
+                                     'model'=>'UserGroup_model',
+                                     'migrate'=>'user_group',
+                                     'view'=>'v_user_group'
+                                ),
+                              array(
+                                        'title' => 'گروه سرویس',
+                                       'controller'=>'service_group_controller',
+                                     'model'=>'ServiceGroup_model',
+                                     'migrate'=>'service_group',
+                                     'view'=>'v_service_group'
+                                ),
+                              array(
+                                        'title' => 'سرویس',
+                                       'controller'=>'services_controller',
+                                     'model'=>'Services_model',
+                                     'migrate'=>'services',
+                                     'view'=>'v_services'
+                                ),
+                            ));
     }
 
     /**

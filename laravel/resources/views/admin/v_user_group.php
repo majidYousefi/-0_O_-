@@ -7,7 +7,7 @@ $config = [
     'delete' => true,
     'form_elements' => [
         ['type' => 'textbox', 'id' => 'f1', 'title' => 'نام گروه', 'require' => 'require'],
-        ['type' => 'multiSelect', 'id' => 'f2', 'title' => 'نام کنترلر', 'require' => 'require','gdd'=>['4','1']],
+        ['type' => 'multiSelect', 'id' => 'f2', 'title' => 'نام سرویس ها', 'require' => 'require','gdd'=>['4','1']],
 
     ],
     'list_colums' => [

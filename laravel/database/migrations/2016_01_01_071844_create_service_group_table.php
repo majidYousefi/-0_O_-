@@ -13,6 +13,12 @@ class CreateServiceGroupTable extends Migration
              $table->string("title",250);          
             $table->timestamps();
         });
+                          DB::table('service_group')->insert(
+                        array(
+                                array(
+                                        'title' => 'سیستم'
+                                ),
+                            ));
     }
     public function down()
     {

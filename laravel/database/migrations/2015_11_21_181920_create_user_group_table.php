@@ -14,6 +14,13 @@ class CreateUserGroupTable extends Migration
             $table->string('services_id',250);
             $table->timestamps();
         });
+                  DB::table('user_group')->insert(
+                        array(
+                                array(
+                                        'title' => 'توسعه دهنده',
+                                        'services_id' =>',1,2,3,4,'
+                                ),
+                            ));
     }
 
     /**

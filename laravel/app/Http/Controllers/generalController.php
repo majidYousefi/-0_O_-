@@ -13,21 +13,27 @@ use Validator;
 use Mail;
 use Excel;
 define("Model", "App\Models\\");
-
+use Session;
 class generalController extends manager {
 
     public $model_obj;
     public $request;
     public $email_to;
     public $email_subject;
-    public function __construct($model_instance = 'User') {
+    public $serv_id;
+    public function __construct($model_instance = 'User',$serv_id='') {
         $model_instance = Model . $model_instance;
         $this->request = '';
         $this->model_obj = new $model_instance();
+        $this->serv_id=$serv_id;
     }
 
     public function show($view) {
         require_once "../resources/views/admin/$view.php";
+        $form_titles = [];
+        foreach ($config['form_elements'] as $row)
+            $form_titles[$row['id']] = $row['title'];
+        session([$config['serv_id'] => $form_titles]);
         return $config;
     }
 
@@ -68,11 +74,18 @@ class generalController extends manager {
         print_r(dialog::message($type, $title, $msgId));
     }
 
-    public function rules($params, $type = '', $title = '') {
+    public function rules($params, $serv_id = '', $titlex = '') {
+       
         $validator = Validator::make(Input::all(), $params);
         if ($validator->fails()) {
-            $x = json_decode(json_encode($validator->errors()), 1);
-            $this->msg(implode("<br>", array_unique(array_flatten($x))));
+            $errors = array_unique(array_flatten(json_decode(json_encode($validator->errors()), 1)));
+
+        if(!empty(session($serv_id)))
+            foreach ($errors as &$er)
+              foreach(session($serv_id) as $k=>$t)
+                 $er=str_replace($k,$t,$er);
+        
+           $this->msg(implode("<br>", $errors));
             exit();
         }
     }

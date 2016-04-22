@@ -5,25 +5,25 @@
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="js/jquery.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="menus/dropDown/styles.css">   
+        <script src="portal/js/jquery.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="portal/plugins/menus/dropDown/styles.css">   
         <link rel="stylesheet" href="bootstrap-3.3.5/css/bootstrap.min.css">
-        <script src="menus/dropDown/script.js"></script>
+        <script src="portal/plugins/menus/dropDown/script.js"></script>
         <script src="bootstrap-3.3.5/js/bootstrap.min.js"></script>
         <link href="bootstrap-3.3.5/css/BootstrapDialog.min.css" rel="stylesheet" type="text/css" />
         <script src="bootstrap-3.3.5/js/BootstrapDialog.min.js"></script>
-        <script src="js/functions.js"></script>
-        <link rel="stylesheet" href="css/ajaxLoader.css" type="text/css">
-        <script src="plugins/growl/javascripts/jquery.growl.js" type="text/javascript"></script>
-        <link href="plugins/growl/stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />
-        <!--<script src="plugins/autocomplete/jquery.easy-autocomplete.min.js"></script> 
-        <link rel="plugins/autocomplete/stylesheet" href="easy-autocomplete.min.css"> -->
-        <script src="plugins/Datepicker-persianDatepicker/js/persianDatePicker.js"></script> 
-        <link rel="stylesheet" href="plugins/Datepicker-persianDatepicker/css/persianDatePicker-latoja.css"> 
-	<script src="ckeditor/ckeditor.js"></script>
-	<link rel="ckeditor/samples/css/samples.css">
-        <link rel="stylesheet" href="css/panel.css">
-      
+        <script src="portal/js/functions.js"></script>
+        <link rel="stylesheet" href="portal/css/ajaxLoader.css" type="text/css">
+        <script src="portal/plugins/growl/javascripts/jquery.growl.js" type="text/javascript"></script>
+        <link href="portal/plugins/growl/stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />
+        <!--<script src="portal/autocomplete/jquery.easy-autocomplete.min.js"></script> 
+        <link rel="portal/autocomplete/stylesheet" href="easy-autocomplete.min.css"> -->
+        <script src="portal/plugins/Datepicker-persianDatepicker/js/persianDatePicker.js"></script> 
+        <link rel="stylesheet" href="portal/plugins/Datepicker-persianDatepicker/css/persianDatePicker-latoja.css"> 
+	<script src="portal/plugins/ckeditor/ckeditor.js"></script>
+	<link rel="portal/plugins/ckeditor/samples/css/samples.css">
+        <link rel="stylesheet" href="portal/css/panel.css">
+        <script src="portal/js/services/1_sevice_function.js"></script>
         <script>
             function csrf()
             {

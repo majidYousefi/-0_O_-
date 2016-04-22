@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use Session;
 use Morilog\Jalali\Facades\jDate;
+use Artisan;
 class signController extends Controller {
 
     public function login() {
@@ -28,6 +29,8 @@ class signController extends Controller {
             }
             
             Session::put('services',$services );
+           // Artisan::queue('db:seed', ['--class' => 'addFirstuser']);
+           // shell_exec("cd www\aprojects\laravel && php artisan db:seed --class=addFirstuser");
             return redirect("panel");
         }
         return redirect('sys_admin');

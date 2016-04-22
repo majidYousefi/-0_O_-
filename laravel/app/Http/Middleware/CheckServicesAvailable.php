@@ -16,7 +16,7 @@ class CheckServicesAvailable
     public function handle($request, Closure $next)
     { 
         if(!isset(Session::get("services")[$request->route()->parameters()['servId']]))
-             return view("access_denied");
+             return view("errors.400"); // bad request 
         return $next($request);
     }
 }

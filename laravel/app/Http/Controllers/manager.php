@@ -28,8 +28,10 @@ class manager extends Controller {
           }
           }
          */
+        date_default_timezone_set('Asia/Tehran');
+        
         $className = SPACE . session('services')[$serv_id]['controller'];
-        $do = new $className(session('services')[$serv_id]['model']);
+        $do = new $className(session('services')[$serv_id]['model'],$serv_id);
         switch ($action) {
             case 's':
                 try {

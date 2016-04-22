@@ -4,16 +4,17 @@ $config = [
     'add' => true,
     'edit' => true,
     'delete' => true,
+    'on_get'=>'_1_on_get',
     'form_elements' => [
         ['type' => 'textbox', 'id' => 'f1', 'title' => 'نام کاربری', 'require' => 'require'],
-        ['type' => 'textbox', 'id' => 'f2', 'title' => 'کلمه عبور ', 'require' => 'require'],
-        ['type' => 'textbox', 'id' => 'f3', 'title' =>'تکرار کلمه عبور' , 'require' => 'require'],
+        ['type' => 'password', 'id' => 'f2', 'title' => 'کلمه عبور ', 'require' => 'require'],
+        ['type' => 'password', 'id' => 'f3', 'title' =>'تکرار کلمه عبور' , 'require' => 'require'],
         ['type' => 'multiSelect', 'id' => 'f4', 'title' =>'گروه کاربری', 'require' => 'require','cssClass'=>'clear','gdd'=>['3','1']],
     ],
     'list_colums' => [
         ['title' => 'شناسه'],
-        ['title' => 'عنوان'],
-        ['title' => 'عنوان']
+        ['title' => 'نام کاربری'],
+        ['title' => 'گروه کاربری']
     ],
     'search_elements' => [
         ['type' => 'textbox', 'id' => 's1', 'label' => 'شناسه', 'cssClass' => 'small'],

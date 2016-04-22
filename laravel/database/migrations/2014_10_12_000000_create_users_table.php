@@ -17,10 +17,20 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('email');
             $table->string('password', 60);
+            $table->string('user_group_id',520);
             $table->rememberToken();
             $table->timestamps();
-            $table->string('user_group_id',520);
+            
         });
+          DB::table('users')->insert(
+                        array(
+                                array(
+                                        'username' => 'a',
+                                        'password' => Hash::make('1'),
+                                        'user_group_id'=>',1,'
+                                )
+                            ));
+    
     }
 
     /**

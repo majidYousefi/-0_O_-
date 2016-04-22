@@ -14,20 +14,12 @@ class service_group_controller extends generalController {
 
 
     public function add() {
+        $this->rules(['f1'=>"required"],$this->serv_id);
         $this->model_obj->add();
     }
 
     public function edit() {
+        $this->rules(['f1'=>"required"],$this->serv_id);
         $this->model_obj->edit();
     }
-
-    public function get() {
-
-        return $this->model_obj->get();
-    }
-
-    public function listx() {
-        return $this->model_obj->listx();
-    }
-
 }

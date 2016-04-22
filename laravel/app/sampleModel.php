@@ -32,7 +32,7 @@ class sample extends generalModel {
 
         //****** قسمت هایی که باید تغییر بکند. بالا و پایین همیسشه ثایته
         $sql = "SELECT SQL_CALC_FOUND_ROWS 
-                id as f1
+                id,title
                 FROM `$this->table`
                 WHERE 1 ";
         if (!empty($cond['s1'])) {
@@ -46,7 +46,12 @@ class sample extends generalModel {
     }
 
     public function get() {
-        return DB::select(DB::raw("SELECT "));
+               return DB::select(DB::raw("SELECT "
+                                . "created_at as f1,"
+                                . "updated_at as f2,"
+                                . " FROM `$this->table`"
+                                . " WHERE id=" . Input::get('id')));
     }
+    
 
 }

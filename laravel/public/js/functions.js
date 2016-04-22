@@ -967,7 +967,7 @@ function related(_this, serv_id, gc_id) {
         if (($(_this).val()).length > 1) {
             $.ajax({
                 url: "services/" + serv_id + "/gc/" + gc_id,
-                data: {'title': $(_this).val()},
+                data: {'params': $(_this).val()},
                 type: "POST",
                 async: false,
                 statusCode: {
@@ -1689,7 +1689,7 @@ function dependency(_this,elem_id,sev_id,gc_id){
         element += "<option>لطفا انتخاب کنید</option>";
             $.ajax({
                 url: "services/" + sev_id + "/gc/" + gc_id,
-                data:{'d_id':$(_this).val()},
+                data:{'params':$(_this).val()},
                 type: "POST",
                 async: false,
                 statusCode: {

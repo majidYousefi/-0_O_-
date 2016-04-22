@@ -43,6 +43,7 @@ class User extends generalModel implements AuthenticatableContract, Authorizable
 
     public function add() {
         $this->username = Input::get('f1');
+        $this->password = Hash::make(Input::get('f2'));
         $this->user_group_id = Input::get('f4');
         $this->save();
     }
@@ -50,6 +51,8 @@ class User extends generalModel implements AuthenticatableContract, Authorizable
     public function edit() {
         $t = $this::find(Input::get('id'));
         $t->username = Input::get('f1');
+        if(!empty(Input::get('f2')))
+          $t->password = Hash::make(Input::get('f2'));
         $t->user_group_id = Input::get('f4');
         $t->save();
     }
