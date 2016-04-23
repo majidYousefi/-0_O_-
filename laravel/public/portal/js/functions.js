@@ -609,7 +609,7 @@ function  checkFixData()
     $("#" + tab + " .mainForm .elm").each(function () {
         if ($(this).attr('id')) {
             var getData = getThisElement(this);
-            if (getData)
+            if (getData || getData==0)
                 data[$(this).attr('id')] = getData;
             else
                 rules = true;
@@ -1234,12 +1234,18 @@ function rules(_this) {
 
 function getThisElement(_this) {
     $(_this).find("p").removeClass("danger");
-    if ($(_this).hasClass("textBox") || $(_this).hasClass("checkBox") || $(_this).hasClass("datePick")) {
+    if ($(_this).hasClass("textBox") || $(_this).hasClass("datePick")) {
         if (($(_this).hasClass("require") && $.trim($(_this).find("input").val()) == ''))
             return rules(_this);
         return $(_this).find("input").val();
     }
-
+    else if ( $(_this).hasClass("checkBox")) {
+        if (($(_this).hasClass("require") && !($(_this).find("input").is(':checked'))))
+            return rules(_this);
+        else
+            return ($(_this).find("input").is(':checked'))?1:0;
+    }
+    
     else if ($(_this).hasClass("selectBox")) {
         if (($(_this).hasClass("require") ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0) || !($.isNumeric($(_this).find("select").val()))))
             return rules(_this);

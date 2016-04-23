@@ -1,7 +1,7 @@
 <?PHP
 
 $config = [
-    "serv_id" => '12',
+    "serv_id" => '8',
     'add' => true,
     'edit' => true,
     'delete' => true,
@@ -14,7 +14,7 @@ $config = [
 
          ['type' => 'textbox', 'id' => 'f6', 'title' => 'تلفن','cssClass' => 'medium '],
         ['type' => 'textbox', 'id' => 'f7', 'title' => 'تلفن همراه','cssClass' => 'medium ','require' => 'require'],
-         ['type' => 'autoSelect', 'id' => 'f8', 'title' => 'نقش','cssClass' => ' clear', 'require' => 'require', 'gdd' => ['13', '1']],
+         ['type' => 'autoSelect', 'id' => 'f8', 'title' => 'نقش','cssClass' => ' clear', 'require' => 'require', 'gdd' => ['9', '1']],
                  ['type' => 'textbox', 'id' => 'f9', 'title' => 'ایمیل'],
        
         ['type' => 'textarea', 'id' => 'f10', 'title' => 'آدرس','cssClass' => ' clear'],

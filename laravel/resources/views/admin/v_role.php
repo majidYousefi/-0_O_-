@@ -1,7 +1,7 @@
 <?PHP
 
 $config = [
-    "serv_id" => '13',
+    "serv_id" => '9',
     'add' => true,
     'edit' => true,
     'delete' => true,
