@@ -1241,7 +1241,7 @@ function getThisElement(_this) {
     }
 
     else if ($(_this).hasClass("selectBox")) {
-        if (($(_this).hasClass("require") && $.trim($(_this).find("select").val()) == ''))
+        if (($(_this).hasClass("require") ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0) || !($.isNumeric($(_this).find("select").val()))))
             return rules(_this);
         return $(_this).find("select").val();
     }
@@ -1264,7 +1264,7 @@ function getThisElement(_this) {
     }
 
     else if ($(_this).hasClass("autoSelect")) {
-        if (($(_this).hasClass("require") && ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0)))
+        if (($(_this).hasClass("require") && ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0) || !($.isNumeric($(_this).find("select").val()))))
             return rules(_this);
         return $(_this).find("select").val();
     }

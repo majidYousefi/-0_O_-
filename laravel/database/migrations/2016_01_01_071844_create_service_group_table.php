@@ -18,6 +18,9 @@ class CreateServiceGroupTable extends Migration
                                 array(
                                         'title' => 'سیستم'
                                 ),
+                               array(
+                                        'title' => 'سرویس های عمومی'
+                                ),
                             ));
     }
     public function down()
