@@ -14,7 +14,7 @@ $config = [
         ['type' => 'textbox', 'id' => 'f6', 'title' => 'قیمت (یوآن)','cssClass' => 'medium'],
         ['type' => 'textbox', 'id' => 'f7', 'title' => 'قیمت (دلار)','cssClass' => 'medium'],
         ['type' => 'textbox', 'id' => 'f8', 'title' => 'موجودی','cssClass' => 'clear small'],
-        ['type' => 'autoSelect', 'id' => 'f9', 'title' => 'نوع محصول', 'cssClass' => '', 'gdd' => ['10', '1']],
+        ['type' => 'autoSelect', 'id' => 'f9', 'title' => 'نوع محصول', 'cssClass' => '', 'gdd' => ['7', '1']],
         ['type' => 'textarea', 'id' => 'f10', 'title' => 'توضیحات', 'cssClass' => 'clear'],
     ],
     'details' => [
@@ -33,7 +33,7 @@ $config = [
         ['type' => 'textbox', 'id' => 's1', 'label' => 'شناسه', 'cssClass' => 'small'],
         ['type' => 'textbox', 'id' => 's2', 'label' => 'کد', 'cssClass' => 'small'],
         ['type' => 'textbox', 'id' => 's3', 'label' => 'نام محصول', 'cssClass' => 'medium'],
-        ['type' => 'autoSelect', 'id' => 's4', 'label' => 'نوع محصول','gdd' => ['10', '1']],
+        ['type' => 'autoSelect', 'id' => 's4', 'label' => 'نوع محصول','gdd' => ['7', '1']],
 
     ]
 ];
