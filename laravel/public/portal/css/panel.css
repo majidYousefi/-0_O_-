@@ -526,6 +526,27 @@ input[type=number] {
     border: solid #fff;
 }
 
+.container:before{
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  /* top: 0; */
+  width: 20%;
+  height: 80%;
+  z-index: -2;
+  opacity: 0.04;
+  background-image: url('../icons/png/bizzi2_logo_2.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+
 .firstRow{
     // display: none;
     visibility: hidden;

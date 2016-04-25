@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp/www/aprojects/laravel/database/migrations/2016_04_25_033816_create_ch_factor_pros_table.php</file>
             <file>file:/C:/wamp/www/aprojects/laravel/resources/views/admin/v_ch_products.php</file>
+            <file>file:/C:/wamp/www/aprojects/laravel/public/portal/js/functions.js</file>
+            <file>file:/C:/wamp/www/aprojects/laravel/database/migrations/2016_04_23_111549_create_ch_factor_table.php</file>
+            <file>file:/C:/wamp/www/aprojects/laravel/resources/views/admin/v_ch_factor.php</file>
         </group>
     </open-files>
 </project-private>

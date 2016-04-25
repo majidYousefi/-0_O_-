@@ -7,8 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddCloumUser' => $baseDir . '/database/migrations/2016_04_11_060753_addCloumUser.php',
+    'App\\Models\\UsersTableSeeder' => $baseDir . '/database/seeds/addFirstuser.php',
     'ChProductsImages' => $baseDir . '/database/migrations/2016_04_18_072253_ch_products_images.php',
     'CreateArtisanTable' => $baseDir . '/database/migrations/2016_04_17_044053_create_artisan_table.php',
+    'CreateChFactorProsTable' => $baseDir . '/database/migrations/2016_04_25_033816_create_ch_factor_pros_table.php',
+    'CreateChFactorTable' => $baseDir . '/database/migrations/2016_04_23_111549_create_ch_factor_table.php',
     'CreateChProductsTable' => $baseDir . '/database/migrations/2016_04_17_061938_create_ch_products_table.php',
     'CreateChProductsTypeTable' => $baseDir . '/database/migrations/2016_04_17_061859_create_ch_products_type_table.php',
     'CreateNewsTable' => $baseDir . '/database/migrations/2016_02_23_182519_create_news_table.php',
@@ -553,7 +556,5 @@ return array(
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
-    'UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
-    'addFirstuser' => $baseDir . '/database/seeds/addFirstuser.php',
     'sample' => $baseDir . '/database/sampleMigrate.php',
 );

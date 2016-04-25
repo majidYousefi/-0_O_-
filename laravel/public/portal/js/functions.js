@@ -582,8 +582,11 @@ function clearForm()
         }
         if ($(this).is("textarea"))
             this.value = '';
-        if ($(this).is("select"))
-            this.value = 0;
+        if ($(this).is("select")){
+            $(this).val($(this).find("option:first").val());
+           // $(this).val("xxxx");
+        }
+          //  this.value = 0;
 
     });
     $("#" + tab + " .mainForm .detail").each(function () {
@@ -609,10 +612,15 @@ function  checkFixData()
     $("#" + tab + " .mainForm .elm").each(function () {
         if ($(this).attr('id')) {
             var getData = getThisElement(this);
-            if (getData || getData==0)
+
+            if ((getData) || getData==0){
+                
                 data[$(this).attr('id')] = getData;
-            else
+            }
+           
+           if (getData===false){
                 rules = true;
+            }
         }
 
 
@@ -1247,7 +1255,7 @@ function getThisElement(_this) {
     }
     
     else if ($(_this).hasClass("selectBox")) {
-        if (($(_this).hasClass("require") ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0) || !($.isNumeric($(_this).find("select").val()))))
+          if (($(_this).hasClass("require") && ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0 || !($.isNumeric($(_this).find("select").val())))))
             return rules(_this);
         return $(_this).find("select").val();
     }
@@ -1270,7 +1278,7 @@ function getThisElement(_this) {
     }
 
     else if ($(_this).hasClass("autoSelect")) {
-        if (($(_this).hasClass("require") && ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0) || !($.isNumeric($(_this).find("select").val()))))
+        if (($(_this).hasClass("require") && ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0 || !($.isNumeric($(_this).find("select").val())))))
             return rules(_this);
         return $(_this).find("select").val();
     }
@@ -1494,7 +1502,7 @@ function createPage(data) {
     page += '    </ul>';
     page += '</div>';
     page += "</div>";
-    page += '<button class="btn btn-success searchButton" onclick=do_actn("l") style="  width: 150px;margin-bottom: 100px;">جستجو<span class="glyphicon glyphicon-search"  ></span></button>';
+    page += '<button class="btn btn-success searchButton" onclick=do_actn("l") style="  width: 150px;margin-bottom: 50px;">جستجو<span class="glyphicon glyphicon-search"  ></span></button>';
     return (page);
 }
 
