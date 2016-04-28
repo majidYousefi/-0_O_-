@@ -20,8 +20,8 @@
         <link rel="portal/autocomplete/stylesheet" href="easy-autocomplete.min.css"> -->
         <script src="portal/plugins/Datepicker-persianDatepicker/js/persianDatePicker.js"></script> 
         <link rel="stylesheet" href="portal/plugins/Datepicker-persianDatepicker/css/persianDatePicker-latoja.css"> 
-	<script src="portal/plugins/ckeditor/ckeditor.js"></script>
-	<link rel="portal/plugins/ckeditor/samples/css/samples.css">
+        <script src="portal/plugins/ckeditor/ckeditor.js"></script>
+        <link rel="portal/plugins/ckeditor/samples/css/samples.css">
         <link rel="stylesheet" href="portal/css/panel.css">
         <script src="portal/js/services/1_sevice_function.js"></script>
         <script>
@@ -30,36 +30,36 @@
                 return "<?php echo csrf_token(); ?>";
             }
             $(document).ready(function () {
-       $(".datePicker").persianDatepicker({
-            theme: 'latoja',
-            cellWidth: 42,
-            cellHeight: 25});
-        });
-        
-        
-setInterval( function() {
-	// Create a newDate() object and extract the seconds of the current time on the visitor's
-	var seconds = new Date().getSeconds();
-	// Add a leading zero to seconds value
-	$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-	},1000);
-	
-setInterval( function() {
-	// Create a newDate() object and extract the minutes of the current time on the visitor's
-	var minutes = new Date().getMinutes();
-	// Add a leading zero to the minutes value
-	$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
-    },1000);
-	
-setInterval( function() {
-	// Create a newDate() object and extract the hours of the current time on the visitor's
-	var hours = new Date().getHours();
-	// Add a leading zero to the hours value
-	$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
-    }, 1000);	
+                $(".datePicker").persianDatepicker({
+                    theme: 'latoja',
+                    cellWidth: 42,
+                    cellHeight: 25});
+            });
 
-        
- 
+
+            setInterval(function () {
+                // Create a newDate() object and extract the seconds of the current time on the visitor's
+                var seconds = new Date().getSeconds();
+                // Add a leading zero to seconds value
+                $("#sec").html((seconds < 10 ? "0" : "") + seconds);
+            }, 1000);
+
+            setInterval(function () {
+                // Create a newDate() object and extract the minutes of the current time on the visitor's
+                var minutes = new Date().getMinutes();
+                // Add a leading zero to the minutes value
+                $("#min").html((minutes < 10 ? "0" : "") + minutes);
+            }, 1000);
+
+            setInterval(function () {
+                // Create a newDate() object and extract the hours of the current time on the visitor's
+                var hours = new Date().getHours();
+                // Add a leading zero to the hours value
+                $("#hours").html((hours < 10 ? "0" : "") + hours);
+            }, 1000);
+
+
+
         </script>
 
     </head>
@@ -82,17 +82,32 @@ setInterval( function() {
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">خانه</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Page 1-1</a></li>
-                            <li><a href="#">Page 1-2</a></li>
-                            <li><a href="#">Page 1-3</a></li>
+                   
+                    <?PHP
+                    foreach ($serv_group as $group) {
+                        if ($group->top_menu == '1') {
+                            echo " <li class='dropdown'>"
+                            . "<a class='dropdown-toggle' data-toggle='dropdown' href='#'>$group->title <span class='caret'></span></a>"
+                                    . "<ul class='dropdown-menu'>";
+                            foreach ($services as $serv) {
+                                if ($serv->parent_id == $group->id)
+                                    echo "<li><a href='#' class='fill' name=$serv->id>$serv->title</a>     </li>";
+                            }
+                            echo '</ul></li>';
+                        }
+                    }
+                    ?>
+                  <!--  <li class='dropdown'>
+                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'>Page 1 <span class='caret'></span></a>
+                        <ul class='dropdown-menu'>
+                            <li><a href=#>Page 1-1</a></li>
+                            <li><a href=#>Page 1-2</a></li>
+                            <li><a href=#>Page 1-3</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
+                    <li><a href=#>Page 2</a></li>
+                    <li><a href=#>Page 3</a></li>
+                  -->
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> پروفایل من</a></li>
@@ -101,67 +116,67 @@ setInterval( function() {
             </div>
         </div>
     </nav>
-    
+
     <div class="menuPanel">
-           <ul class="nav nav-tabs" id="TabIndex"></ul>
+        <ul class="nav nav-tabs" id="TabIndex"></ul>
     </div>
 
     <div class="rightPanel">
         <div class="clock">
-<div id="Date">{{ $date }}</div>
-  <ul>
-      <li id="hours"></li>
-      <li id="point">:</li>
-      <li id="min"></li>
-      <li id="point">:</li>
-      <li id="sec"></li>
-  </ul>
-</div>
+            <div id="Date">{{ $date }}</div>
+            <ul>
+                <li id="hours"></li>
+                <li id="point">:</li>
+                <li id="min"></li>
+                <li id="point">:</li>
+                <li id="sec"></li>
+            </ul>
+        </div>
         <div id='cssmenu' style="float: right;
              width: 100%;">
-        <ul>
-           <!--         <li class=' has-sub'><a href='#' >کالا</a>
-                    <ul>
-                        <li ><a href='#' class="fill"  name="2" >Product 1</a>     </li>
-                        <li ><a href='#' >Product 2</a>         </li>
-                    </ul>
-                </li>
-
-                <li class=' has-sub'><a href='#'>سرویس</a>
-                    <ul>
-                        <li ><a href='#' class="fill" name="3">گروه کاربری</a>     </li>
-                        <li ><a href='#' class="fill" name="1">کاربر</a>         </li>
-                        <li ><a href='#' class="fill"  name="4" >سرویس ها</a>         </li>
-                    </ul>
-                </li>
-      -->
-                <?PHP 
-                foreach($serv_group as $group)
-                {
-                    echo " <li class=' has-sub'><a href='#'>$group->title</a><ul>";
+            <ul>
+                <!--         <li class=' has-sub'><a href='#' >کالا</a>
+                         <ul>
+                             <li ><a href='#' class="fill"  name="2" >Product 1</a>     </li>
+                             <li ><a href='#' >Product 2</a>         </li>
+                         </ul>
+                     </li>
+     
+                     <li class=' has-sub'><a href='#'>سرویس</a>
+                         <ul>
+                             <li ><a href='#' class="fill" name="3">گروه کاربری</a>     </li>
+                             <li ><a href='#' class="fill" name="1">کاربر</a>         </li>
+                             <li ><a href='#' class="fill"  name="4" >سرویس ها</a>         </li>
+                         </ul>
+                     </li>
+                -->
+                <?PHP
+                foreach ($serv_group as $group) {
+                    if ($group->top_menu != '1') {
+                        echo " <li class=' has-sub'><a href='#'>$group->title</a><ul>";
                         foreach ($services as $serv) {
-                            if($serv->parent_id == $group->id)
-                               echo "<li><a href='#' class='fill' name=$serv->id>$serv->title</a>     </li>";
+                            if ($serv->parent_id == $group->id)
+                                echo "<li><a href='#' class='fill' name=$serv->id>$serv->title</a>     </li>";
                         }
                         echo '</ul></li>';
+                    }
                 }
-                
                 ?>
-  <!--  
-                <li class=' has-sub'><a href='#'>tt</a>
-                    <ul>
-                        <?PHP
-                        foreach ($services as $serv) {
-                            echo "<li><a href='#' class='fill' name=$serv->id>$serv->title</a>     </li>";
-                        }
-                        ?>
-                    </ul>
-                </li>
-
-            <li><a href='#'>About</a></li>
-                <li><a href='#'>Contact</a></li>
-            
-             -->
+                <!--  
+                              <li class=' has-sub'><a href='#'>tt</a>
+                                  <ul>
+<?PHP
+foreach ($services as $serv) {
+    echo "<li><a href='#' class='fill' name=$serv->id>$serv->title</a>     </li>";
+}
+?>
+                                  </ul>
+                              </li>
+              
+                          <li><a href='#'>About</a></li>
+                              <li><a href='#'>Contact</a></li>
+                          
+                -->
             </ul>
         </div>
     </div>

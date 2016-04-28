@@ -54,7 +54,7 @@ class signController extends Controller {
         {
             $sg.=$s->parent_id.',';
         }
-        $serv_group = DB::select(DB::raw("SELECT id,title
+        $serv_group = DB::select(DB::raw("SELECT id,title,top_menu
             FROM service_group WHERE FIND_IN_SET(id,'".$sg."')"
         ));
         return view('admin.panel', ["services" => $serv,"serv_group"=>$serv_group,"date"=>jDate::forge()->format('l  j / m / Y ')]);

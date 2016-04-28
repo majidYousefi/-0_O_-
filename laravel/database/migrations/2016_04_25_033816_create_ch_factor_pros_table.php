@@ -15,7 +15,8 @@ class CreateChFactorProsTable extends Migration
         Schema::create('ch_factor_pros', function (Blueprint $table) {
             $table->increments('id')->unique()->index();
              $table->integer("ch_factor_id"); 
-              $table->integer("person_id"); 
+              $table->integer("ch_products_id");
+                $table->integer("amount");
               $table->string("price",50); 
         });
     }

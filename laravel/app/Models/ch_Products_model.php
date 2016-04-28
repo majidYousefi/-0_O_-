@@ -75,7 +75,6 @@ class ch_Products_model extends generalModel {
 
         //**********       
         $sql.=" ORDER BY id DESC LIMIT $from,$to";
-
         $data = DB::select(DB::raw($sql));
         $data['count'] = DB::select(DB::raw("SELECT FOUND_ROWS() as count"))[0]->count;
         return $data;

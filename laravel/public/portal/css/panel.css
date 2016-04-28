@@ -535,7 +535,7 @@ input[type=number] {
   width: 20%;
   height: 80%;
   z-index: -2;
-  opacity: 0.04;
+  opacity: 0.09;
   background-image: url('../icons/png/bizzi2_logo_2.png');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -605,7 +605,7 @@ input[type=number] {
 .small {
     width: 100px !important;
 }
-.small > * {
+.small > *:not("i") {
     width: 100px !important;
 }
 .medium{
@@ -616,7 +616,7 @@ input[type=number] {
     width: 430px !important;
 }
 
-.large > *{
+.large > *:not("i"){
     width: 430px !important;
 }
 
@@ -691,7 +691,7 @@ select {
 }
 
 .buttonContainer{
-    width: 1250px;  
+  //  width: 1250px;  
     display: flex;
     margin-right: 10px;
 }

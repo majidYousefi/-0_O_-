@@ -15,12 +15,14 @@ class ServiceGroup_model extends generalModel {
 
     public function add() {
         $this->title = Input::get('f1');
+        $this->top_menu = Input::get('f2');
         return $this->save();
     }
 
     public function edit() {
         $t = $this::find(Input::get('id'));
         $t->title = Input::get('f1');
+        $t->top_menu = Input::get('f2');
         return $t->save();
     }
 

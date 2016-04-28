@@ -12,7 +12,8 @@ $config = [
         ['type' => 'textbox', 'id' => 'f4', 'title' =>'نام مایگرت', 'require' => 'require','cssClass'=>'clear'],
         ['type' => 'textbox', 'id' => 'f5', 'title' => 'نام  ویو', 'require' => 'require'],
         ['type' => 'autoSelect', 'id' => 'f6', 'title' =>'گروه سرویس ', 'require' => 'require','gdd'=>['3','1']],
-        ['type' => 'checkbox', 'id' => 'f7', 'title' =>'ایجاد سیستمی','cssClass'=>'clear','info'=>'در صورت انتخاب تمامی فایل ها توسط سیستم ساخته خواهند شد.']
+        ['type' => 'checkbox', 'id' => 'f7', 'title' =>'ایجاد سیستمی','cssClass'=>'clear','info'=>'در صورت انتخاب تمامی فایل ها توسط سیستم ساخته خواهند شد.'],
+        
     ],
     'list_colums' => [
         ['title' => 'شناسه'],

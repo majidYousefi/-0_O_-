@@ -6,6 +6,7 @@ $config = [
     'delete' => true,
     'form_elements' => [
         ['type' => 'textbox', 'id' => 'f1', 'title' => 'عنوان', 'require' => 'require'],
+        ['type' => 'checkbox', 'id' => 'f2', 'title' =>'منوی بالا','info'=>'نمایش در منوی بالا پرتال']
 
     ],
     'list_colums' => [

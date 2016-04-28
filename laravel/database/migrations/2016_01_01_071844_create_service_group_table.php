@@ -10,8 +10,8 @@ class CreateServiceGroupTable extends Migration
     {
       Schema::create('service_group', function (Blueprint $table) {
             $table->increments('id')->unique()->index();
-             $table->string("title",250);          
-            $table->timestamps();
+             $table->string("title",250);
+             $table->smallInteger('top_menu');
         });
                           DB::table('service_group')->insert(
                         array(

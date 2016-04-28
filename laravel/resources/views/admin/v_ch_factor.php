@@ -8,8 +8,7 @@ $config = [
     'form_elements' => [
         ['type' => 'textbox', 'id' => 'f1', 'title' => 'تاریخ درج', 'cssClass' => 'medium',"readonly"=>"readonly"],
          ['type' => 'textbox', 'id' => 'f2', 'title' => 'تاریخ ویرایش', 'cssClass' => 'medium',"readonly"=>"readonly"],
-        ['type' => 'textbox', 'id' => 'f3', 'title' => 'شماره فاکتور', 'cssClass' => 'clear medium', 'require' => 'require'],
-        ['type' => 'autoComplete', 'id' => 'f4', 'title' => 'نام خریدار','cssClass' => 'large','gdd' => ['8', '1']],
+        ['type' => 'autoComplete', 'id' => 'f3', 'title' => 'نام خریدار','cssClass' => 'clear large','gdd' => ['8', '1']],
     ],
     'details' => [
         'd1' => [

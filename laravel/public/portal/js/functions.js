@@ -1082,6 +1082,7 @@ function fillDetails(data) {
                         $(this).find('tbody tr:last>td').children().each(function () {
                             if (data['details'][j][k][index])
                                 setThisElement(this, data['details'][j][k][index]);
+                           
                             index++;
                         });
                     }
@@ -1122,10 +1123,15 @@ function checkFixDetailData()
 
                 $(this).find('.elm').each(function () {
                     var getData = getThisElement(this);
-                    if (getData)
-                        data[detId][j][i] = getData;
-                    else
-                        return;
+         
+                    if ((getData) || getData == 0) {
+
+                       data[detId][j][i] = getData;
+                    }
+
+                    if (getData === false) {
+                        rules = true;
+                    }
 
 
                     /*  if ($(this).is("input")) {
@@ -1241,6 +1247,7 @@ function rules(_this) {
 }
 
 function getThisElement(_this) {
+    console.log(_this);
     $(_this).find("p").removeClass("danger");
     if ($(_this).hasClass("textBox") || $(_this).hasClass("datePick")) {
         if (($(_this).hasClass("require") && $.trim($(_this).find("input").val()) == ''))
@@ -1254,15 +1261,15 @@ function getThisElement(_this) {
             return ($(_this).find("input").is(':checked'))?1:0;
     }
     
-    else if ($(_this).hasClass("selectBox")) {
+  /*  else if ($(_this).hasClass("selectBox")) {
           if (($(_this).hasClass("require") && ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0 || !($.isNumeric($(_this).find("select").val())))))
             return rules(_this);
         return $(_this).find("select").val();
-    }
+    }*/
     else if ($(_this).hasClass("textArea")) {
-        if (($(_this).hasClass("require") && $.trim($(_this).find("textArea").text()) == ''))
+        if (($(_this).hasClass("require") && $.trim($(_this).find("textarea").val()) == ''))
             return rules(_this);
-        return $(_this).find("textArea").text();
+        return $(_this).find("textarea").val();
     }
 
     else if ($(_this).hasClass("autoComplete")) {
@@ -1277,10 +1284,10 @@ function getThisElement(_this) {
         return $(_this).find(".imgUploadLink > a").attr('href');
     }
 
-    else if ($(_this).hasClass("autoSelect")) {
+    else if ($(_this).hasClass("autoSelect") || $(_this).hasClass("selectBox")) {
         if (($(_this).hasClass("require") && ($.trim($(_this).find("select").val()) == '' || $.trim($(_this).find("select").val()) == 0 || !($.isNumeric($(_this).find("select").val())))))
             return rules(_this);
-        return $(_this).find("select").val();
+        return (($.isNumeric($(_this).find("select").val())))?$(_this).find("select").val():'';
     }
 
     else if ($(_this).hasClass("editor")) {
@@ -1319,17 +1326,17 @@ function setThisElement(_this, data) {
     var tab = $("#TabIndex .active >a").attr('href').replace('#', '');
     if ($(_this).hasClass("textBox") || $(_this).hasClass("datePick"))
         $(_this).find("input").val(data);
-    if ($(_this).hasClass("checkBox") && data == 1) {
-        _this.find("input").checked = true;
-        _this.find("input").value = '1';
+    else if ($(_this).hasClass("checkBox") && data == 1) {
+        $(_this).find("input")[0].checked = true;
+        $(_this).find("input")[0].value = '1';
     }
 
 
 
-    if ($(_this).hasClass("textArea"))
+    else if ($(_this).hasClass("textArea"))
         $(_this).find("textarea").val(data);
 
-    if ($(_this).hasClass("selectBox") || $(_this).hasClass("autoSelect")) {
+    else if ($(_this).hasClass("selectBox") || $(_this).hasClass("autoSelect")) {
 
         $(_this).find("select").children().each(function () {
             if (this.value == data) {
@@ -1339,7 +1346,7 @@ function setThisElement(_this, data) {
             }
         });
     }
-    if ($(_this).hasClass("multiSelect")) {
+    else if ($(_this).hasClass("multiSelect")) {
         var ch = '';
         try {
             ch = data.split(',');
@@ -1355,25 +1362,36 @@ function setThisElement(_this, data) {
             }
         });
     }
-    if ($(_this).hasClass("fileUploader")) {
+    else if ($(_this).hasClass("fileUploader")) {
         if (data.split('.')[1] == 'jpeg')
             myCanvas(data, $(_this).find(".uploadButton")[0]);
         $(_this).find(".imgUploadLink").html($("<a href='" + data + "' target='_blank'>" + '<span class="glyphicon glyphicon glyphicon-link"  ></span>' + data.split('.')[1] + "</a>"));
         $(_this).find(".imgUploadLink").append($('<span class="glyphicon glyphicon-remove-sign deleteFile"  ></span>'));
     }
-    if ($(_this).hasClass("editor")) {
+    else if ($(_this).hasClass("editor")) {
         $(_this).find(".cke_wysiwyg_frame").contents().find(".cke_editable").html(data);
     }
-    if ($(_this).hasClass("autoComplete")) {
-        var sp = data.split('^');
-        var id = sp[0];
-        var txt = sp[1];
+    else if ($(_this).hasClass("autoComplete")) {
+        var id = data;
+        var txt = data;
+        try {
+            var sp = data.split('^');
+
+            id = sp[0];
+            txt = sp[1];
+        } catch (e) {
+             id = data;
+             txt = data;
+        }
+
         $(_this).find("input").val(txt);
         $(_this).find("input").attr('id', id);
+
     }
     if ($(_this).hasClass("autoCompo")) {
         ($(_this)).find('select').val(data);
     }
+
 }
 
 
@@ -1547,7 +1565,8 @@ function exchangeDataStyle(data, detailElelemnt) {
     var label_2 = (!(detailElelemnt) && data['title']) ? "<span style='  margin-right: 5px;'>" + data['title'] + "</span>" : '';
     //var info = '';//(data['info']) ? "<i class='glyphicon glyphicon-info-sign' data-toggle='tooltip' data-placement='top' title='"+data['info']+"'></i>" : '';
     var dependency = (data['dependency']) ? ((data['type']=="autoComplete")?"onchange=":"onchange=")+"dependency(this,'"+data['dependency'][0]+"','"+data['dependency'][1]+"','"+data['dependency'][2]+"')": '';
-//*************editor
+    var readonly = (data['readonly']) ? " " + data['readonly'] : '';
+    //*************editor
     var width = (data['width']) ? data['width'] : 900;
     var height = (data['height']) ? data['height'] : 165;
     var rand_id = "rand_id" + Math.floor(Math.random() * (100000 - 1 + 1) + 1);
@@ -1557,28 +1576,28 @@ function exchangeDataStyle(data, detailElelemnt) {
         element = "<div class='textBox " + cClass + "' " + id + " >";
         //element += info;
         element += label;
-        element += "<input  class='form-control' type='text' " + jsEvent + " >";
+        element += "<input  class='form-control' type='text' " + jsEvent+ readonly  + " >";
         element += "</div>";
     }
     else if (data['type'] == 'password') {
         element = "<div class='textBox " + cClass + "' " + id + " >";
         // element += info;
         element += label;
-        element += "<input  class='form-control' type='password' " + jsEvent + " >";
+        element += "<input  class='form-control' type='password' " + jsEvent+ readonly + " >";
         element += "</div>";
     }
     else if (data['type'] == 'textarea') {
         element = "<div class='textArea " + cClass + "' " + id + "  >";
         //element += info;
         element += label;
-        element += "<textarea  class='form-control' cols='55' rows='8'  " + jsEvent + " ></textarea>";
+        element += "<textarea  class='form-control' cols='55' rows='8'  " + jsEvent+ readonly  + " ></textarea>";
         element += "</div>";
     }
     else if (data['type'] == 'select') {
         element = "<div class='selectBox " + cClass + "' " + id + "  >";
         // element += info;
         element += label;
-        element += "<select  class='form-control'  " + jsEvent + " >";
+        element += "<select  class='form-control'  " + jsEvent+ readonly  + " >";
         for (var m in data['value']) {
             element += "<option value='" + m + "'>" + data['value'][m] + "</option>";
         }
@@ -1589,7 +1608,7 @@ function exchangeDataStyle(data, detailElelemnt) {
         element = "<div class='autoSelect " + cClass + "' " + id + "  >";
         //element += info;
         element += label;
-        element += "<select "+dependency+" class='form-control' " + jsEvent + " >";
+        element += "<select "+dependency+" class='form-control' " + jsEvent+ readonly  + " >";
         element += "<option>لطفا انتخاب کنید</option>";
         if (data['gdd'] && data['gdd'] != '') {
             $.ajax({
@@ -1621,7 +1640,7 @@ function exchangeDataStyle(data, detailElelemnt) {
 
         // element += info;
         element += label;
-        element += "<input  type='checkbox' " + jsEvent + "  >";
+        element += "<input  type='checkbox' " + jsEvent+ readonly  + "  >";
         element += "</label>";
         element += "</div>";
     }
@@ -1631,7 +1650,7 @@ function exchangeDataStyle(data, detailElelemnt) {
         // element += info;
         element += label;
         element += "  <i class='glyphicon glyphicon-sort-by-attributes-alt'></i>";
-        element += "<input  id  " +dependency + " "+ related + " " + jsEvent + "   class='form-control' >";
+        element += "<input  id  " +dependency + " "+ related + " " + jsEvent+ readonly  + "   class='form-control' >";
         element += "</div>";
     }
     else if (data['type'] == 'datePicker') {
@@ -1647,7 +1666,7 @@ function exchangeDataStyle(data, detailElelemnt) {
         // element += info;
         element += label;
         //  element += "";
-        element += " <button class='btn uploadButton'  " + jsEvent + "  >آپلود فایل <i class='glyphicon glyphicon-open'></i></button><br><br>";
+        element += " <button class='btn uploadButton'  " + jsEvent+ readonly  + "  >آپلود فایل <i class='glyphicon glyphicon-open'></i></button><br><br>";
         element += "<input type='file'  style='  display: none;'><span class='imageHolder'></span><span class='imgUploadLink'></span>";
         element += "</div>";
     }
