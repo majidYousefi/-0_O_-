@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/aprojects/laravel/app/Models/ch_ProductsType_model.php</file>
             <file>file:/C:/wamp/www/aprojects/laravel/app/Models/ch_Factor_model.php</file>
+            <file>file:/C:/wamp/www/aprojects/laravel/public/portal/css/panel.css</file>
             <file>file:/C:/wamp/www/aprojects/laravel/resources/views/admin/panel.blade.php</file>
             <file>file:/C:/wamp/www/aprojects/laravel/public/portal/js/functions.js</file>
             <file>file:/C:/wamp/www/aprojects/laravel/resources/views/admin/v_ch_factor.php</file>
+            <file>file:/C:/wamp/www/aprojects/laravel/app/Models/ch_Products_model.php</file>
         </group>
     </open-files>
 </project-private>

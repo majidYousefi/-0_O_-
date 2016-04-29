@@ -124,6 +124,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Morilog\Jalali\JalaliServiceProvider::class,
+         Witty\LaravelDbBackup\DBBackupServiceProvider::class,
         /*
          * Application Service Providers...
          */
